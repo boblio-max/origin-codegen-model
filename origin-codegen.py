@@ -19,31 +19,36 @@ model = PeftModel.from_pretrained(
 )
 model.to(device)
 model.eval()
-user = input("> ")
-prompt = f"""
-### Instruction
-{user}
+run = True
+while run:
+    user = input("> ")
+    if user.lower() == "exit":
+        run = False
+        break
+    prompt = f"""
+    ### Instruction
+    {user}
 
-### Response
-"""
-inputs = tokenizer(
+    ### Response
+    """
+    inputs = tokenizer(
     prompt,
     return_tensors="pt"
-).to(device)
+    ).to(device)
 
-with torch.no_grad():
+    with torch.no_grad():
 
-    outputs = model.generate(
-        **inputs,
-        max_new_tokens=100,
-        temperature=0.1,
-        do_sample=True
-    )
+        outputs = model.generate(
+            **inputs,
+            max_new_tokens=100,
+            temperature=0.1,
+            do_sample=True
+        )
 
-result = tokenizer.decode(
+    result = tokenizer.decode(
     outputs[0],
     skip_special_tokens=True
-)
+    )
 
-print(result)
-print(result.split("### Response\n")[1].strip())
+    # print(result)
+    print(result.split("### Response\n")[1].strip())

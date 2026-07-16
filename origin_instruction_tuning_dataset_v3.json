@@ -11690,7 +11690,7 @@
   {
     "instruction": "Build a Book class with a type field and to_string method. Instantiate it.",
     "input": "",
-    "output": "class Book(type) {\n    def to_string(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet obj_item = Book(\"obj_item\")\nobj_item.to_string()",
+    "output": "class Book(type) {\n    def to_string(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet obj_item: Book = Book(\"obj_item\")\nobj_item.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11698,7 +11698,7 @@
   {
     "instruction": "Implement a Car class containing type and a announce method, then create an object.",
     "input": "",
-    "output": "class Car(type) {\n    def announce(self) {\n        print self.type\n    }\n}\nlet obj_robot = Car(\"obj_robot\")\nobj_robot.announce()",
+    "output": "class Car(type) {\n    def announce(self) {\n        print self.type\n    }\n}\nlet obj_robot: Car = Car(\"obj_robot\")\nobj_robot.announce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11706,7 +11706,7 @@
   {
     "instruction": "Build a Game class with a grade field and display method. Instantiate it.",
     "input": "",
-    "output": "class Game(grade) {\n    def display(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet item_shape = Game(\"item_shape\")\nitem_shape.display()",
+    "output": "class Game(grade) {\n    def display(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet item_shape: Game = Game(\"item_shape\")\nitem_shape.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11714,7 +11714,7 @@
   {
     "instruction": "Write a Planet class with type property and introduce method. Make an instance.",
     "input": "",
-    "output": "class Planet(type) {\n    def introduce(self) {\n        print self.type\n    }\n}\nlet obj_user = Planet(\"obj_user\")\nobj_user.introduce()",
+    "output": "class Planet(type) {\n    def introduce(self) {\n        print self.type\n    }\n}\nlet obj_user: Planet = Planet(\"obj_user\")\nobj_user.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11722,7 +11722,7 @@
   {
     "instruction": "Implement a User class containing name and a show method, then create an object.",
     "input": "",
-    "output": "class User(name) {\n    def show(self) {\n        print self.name + \" is the name\"\n    }\n}\nlet the_Y = User(\"the_Y\")\nthe_Y.show()",
+    "output": "class User(name) {\n    def show(self) {\n        print self.name + \" is the name\"\n    }\n}\nlet the_Y: User = User(\"the_Y\")\nthe_Y.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11730,7 +11730,7 @@
   {
     "instruction": "Implement a Car class containing type and a announce method, then create an object.",
     "input": "",
-    "output": "class Car(type) {\n    def announce(self) {\n        print \"This object is named \" + self.type\n    }\n}\nlet my_item = Car(\"my_item\")\nmy_item.announce()",
+    "output": "class Car(type) {\n    def announce(self) {\n        print \"This object is named \" + self.type\n    }\n}\nlet my_item: Car = Car(\"my_item\")\nmy_item.announce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11738,7 +11738,7 @@
   {
     "instruction": "Write a Building class with age property and get_name method. Make an instance.",
     "input": "",
-    "output": "class Building(age) {\n    def get_name(self) {\n        print \"Name: \" + self.age\n    }\n}\nlet item_animal = Building(\"item_animal\")\nitem_animal.get_name()",
+    "output": "class Building(age) {\n    def get_name(self) {\n        print \"Name: \" + self.age\n    }\n}\nlet item_animal: Building = Building(\"item_animal\")\nitem_animal.get_name()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11746,7 +11746,7 @@
   {
     "instruction": "Create a Tool class with a count attribute and a info method, then instantiate it.",
     "input": "",
-    "output": "class Tool(count) {\n    def info(self) {\n        print \"Name: \" + self.count\n    }\n}\nlet my_B = Tool(\"my_B\")\nmy_B.info()",
+    "output": "class Tool(count) {\n    def info(self) {\n        print \"Name: \" + self.count\n    }\n}\nlet my_B: Tool = Tool(\"my_B\")\nmy_B.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11754,7 +11754,7 @@
   {
     "instruction": "Define a Machine class that has speed and a introduce method. Create an instance.",
     "input": "",
-    "output": "class Machine(speed) {\n    def introduce(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet item_Z = Machine(\"item_Z\")\nitem_Z.introduce()",
+    "output": "class Machine(speed) {\n    def introduce(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet item_Z: Machine = Machine(\"item_Z\")\nitem_Z.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11762,7 +11762,7 @@
   {
     "instruction": "Build a Student class with a color field and status method. Instantiate it.",
     "input": "",
-    "output": "class Student(color) {\n    def status(self) {\n        print \"Name: \" + self.color\n    }\n}\nlet the_book = Student(\"the_book\")\nthe_book.status()",
+    "output": "class Student(color) {\n    def status(self) {\n        print \"Name: \" + self.color\n    }\n}\nlet the_book: Student = Student(\"the_book\")\nthe_book.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11770,7 +11770,7 @@
   {
     "instruction": "Implement a Car class containing color and a present method, then create an object.",
     "input": "",
-    "output": "class Car(color) {\n    def present(self) {\n        print \"This object is named \" + self.color\n    }\n}\nlet obj_A = Car(\"obj_A\")\nobj_A.present()",
+    "output": "class Car(color) {\n    def present(self) {\n        print \"This object is named \" + self.color\n    }\n}\nlet obj_A: Car = Car(\"obj_A\")\nobj_A.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11778,7 +11778,7 @@
   {
     "instruction": "Write a Planet class with status property and reveal method. Make an instance.",
     "input": "",
-    "output": "class Planet(status) {\n    def reveal(self) {\n        print \"Name: \" + self.status\n    }\n}\nlet inst_shape = Planet(\"inst_shape\")\ninst_shape.reveal()",
+    "output": "class Planet(status) {\n    def reveal(self) {\n        print \"Name: \" + self.status\n    }\n}\nlet inst_shape: Planet = Planet(\"inst_shape\")\ninst_shape.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11786,7 +11786,7 @@
   {
     "instruction": "Write a Game class with age property and get_info method. Make an instance.",
     "input": "",
-    "output": "class Game(age) {\n    def get_info(self) {\n        print self.age + \" is the name\"\n    }\n}\nlet new_Z = Game(\"new_Z\")\nnew_Z.get_info()",
+    "output": "class Game(age) {\n    def get_info(self) {\n        print self.age + \" is the name\"\n    }\n}\nlet new_Z: Game = Game(\"new_Z\")\nnew_Z.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11794,7 +11794,7 @@
   {
     "instruction": "Write a Planet class with name property and show method. Make an instance.",
     "input": "",
-    "output": "class Planet(name) {\n    def show(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet inst_dog = Planet(\"inst_dog\")\ninst_dog.show()",
+    "output": "class Planet(name) {\n    def show(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet inst_dog: Planet = Planet(\"inst_dog\")\ninst_dog.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11802,7 +11802,7 @@
   {
     "instruction": "Create a Game class with a name attribute and a describe method, then instantiate it.",
     "input": "",
-    "output": "class Game(name) {\n    def describe(self) {\n        print self.name\n    }\n}\nlet a_animal = Game(\"a_animal\")\na_animal.describe()",
+    "output": "class Game(name) {\n    def describe(self) {\n        print self.name\n    }\n}\nlet a_animal: Game = Game(\"a_animal\")\na_animal.describe()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11810,7 +11810,7 @@
   {
     "instruction": "Build a Widget class with a label field and to_string method. Instantiate it.",
     "input": "",
-    "output": "class Widget(label) {\n    def to_string(self) {\n        print self.label\n    }\n}\nlet new_task = Widget(\"new_task\")\nnew_task.to_string()",
+    "output": "class Widget(label) {\n    def to_string(self) {\n        print self.label\n    }\n}\nlet new_task: Widget = Widget(\"new_task\")\nnew_task.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11818,7 +11818,7 @@
   {
     "instruction": "Define a Game class that has grade and a present method. Create an instance.",
     "input": "",
-    "output": "class Game(grade) {\n    def present(self) {\n        print self.grade + \" is the name\"\n    }\n}\nlet inst_Z = Game(\"inst_Z\")\ninst_Z.present()",
+    "output": "class Game(grade) {\n    def present(self) {\n        print self.grade + \" is the name\"\n    }\n}\nlet inst_Z: Game = Game(\"inst_Z\")\ninst_Z.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11826,7 +11826,7 @@
   {
     "instruction": "Implement a Widget class containing id and a to_string method, then create an object.",
     "input": "",
-    "output": "class Widget(id) {\n    def to_string(self) {\n        print self.id\n    }\n}\nlet the_robot = Widget(\"the_robot\")\nthe_robot.to_string()",
+    "output": "class Widget(id) {\n    def to_string(self) {\n        print self.id\n    }\n}\nlet the_robot: Widget = Widget(\"the_robot\")\nthe_robot.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11834,7 +11834,7 @@
   {
     "instruction": "Define a Tool class that has level and a display method. Create an instance.",
     "input": "",
-    "output": "class Tool(level) {\n    def display(self) {\n        print self.level\n    }\n}\nlet inst_Z = Tool(\"inst_Z\")\ninst_Z.display()",
+    "output": "class Tool(level) {\n    def display(self) {\n        print self.level\n    }\n}\nlet inst_Z: Tool = Tool(\"inst_Z\")\ninst_Z.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11842,7 +11842,7 @@
   {
     "instruction": "Build a Device class with a level field and get_info method. Instantiate it.",
     "input": "",
-    "output": "class Device(level) {\n    def get_info(self) {\n        print \"Name: \" + self.level\n    }\n}\nlet new_B = Device(\"new_B\")\nnew_B.get_info()",
+    "output": "class Device(level) {\n    def get_info(self) {\n        print \"Name: \" + self.level\n    }\n}\nlet new_B: Device = Device(\"new_B\")\nnew_B.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11850,7 +11850,7 @@
   {
     "instruction": "Implement a Machine class containing speed and a report method, then create an object.",
     "input": "",
-    "output": "class Machine(speed) {\n    def report(self) {\n        print self.speed + \" is the name\"\n    }\n}\nlet a_machine = Machine(\"a_machine\")\na_machine.report()",
+    "output": "class Machine(speed) {\n    def report(self) {\n        print self.speed + \" is the name\"\n    }\n}\nlet a_machine: Machine = Machine(\"a_machine\")\na_machine.report()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11858,7 +11858,7 @@
   {
     "instruction": "Write a Widget class with name property and present method. Make an instance.",
     "input": "",
-    "output": "class Widget(name) {\n    def present(self) {\n        print self.name\n    }\n}\nlet obj_Z = Widget(\"obj_Z\")\nobj_Z.present()",
+    "output": "class Widget(name) {\n    def present(self) {\n        print self.name\n    }\n}\nlet obj_Z: Widget = Widget(\"obj_Z\")\nobj_Z.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11866,7 +11866,7 @@
   {
     "instruction": "Write a Tool class with age property and to_string method. Make an instance.",
     "input": "",
-    "output": "class Tool(age) {\n    def to_string(self) {\n        print self.age + \" is the name\"\n    }\n}\nlet obj_machine = Tool(\"obj_machine\")\nobj_machine.to_string()",
+    "output": "class Tool(age) {\n    def to_string(self) {\n        print self.age + \" is the name\"\n    }\n}\nlet obj_machine: Tool = Tool(\"obj_machine\")\nobj_machine.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11874,7 +11874,7 @@
   {
     "instruction": "Build a Widget class with a score field and info method. Instantiate it.",
     "input": "",
-    "output": "class Widget(score) {\n    def info(self) {\n        print \"Name: \" + self.score\n    }\n}\nlet a_dog = Widget(\"a_dog\")\na_dog.info()",
+    "output": "class Widget(score) {\n    def info(self) {\n        print \"Name: \" + self.score\n    }\n}\nlet a_dog: Widget = Widget(\"a_dog\")\na_dog.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11882,7 +11882,7 @@
   {
     "instruction": "Implement a Machine class containing weight and a reveal method, then create an object.",
     "input": "",
-    "output": "class Machine(weight) {\n    def reveal(self) {\n        print \"Name: \" + self.weight\n    }\n}\nlet obj_001 = Machine(\"obj_001\")\nobj_001.reveal()",
+    "output": "class Machine(weight) {\n    def reveal(self) {\n        print \"Name: \" + self.weight\n    }\n}\nlet obj_001: Machine = Machine(\"obj_001\")\nobj_001.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11890,7 +11890,7 @@
   {
     "instruction": "Implement a Widget class containing level and a display method, then create an object.",
     "input": "",
-    "output": "class Widget(level) {\n    def display(self) {\n        print self.level + \" is the name\"\n    }\n}\nlet a_C = Widget(\"a_C\")\na_C.display()",
+    "output": "class Widget(level) {\n    def display(self) {\n        print self.level + \" is the name\"\n    }\n}\nlet a_C: Widget = Widget(\"a_C\")\na_C.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11898,7 +11898,7 @@
   {
     "instruction": "Build a Book class with a status field and introduce method. Instantiate it.",
     "input": "",
-    "output": "class Book(status) {\n    def introduce(self) {\n        print self.status\n    }\n}\nlet item_003 = Book(\"item_003\")\nitem_003.introduce()",
+    "output": "class Book(status) {\n    def introduce(self) {\n        print self.status\n    }\n}\nlet item_003: Book = Book(\"item_003\")\nitem_003.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11906,7 +11906,7 @@
   {
     "instruction": "Write a Task class with value property and show method. Make an instance.",
     "input": "",
-    "output": "class Task(value) {\n    def show(self) {\n        print \"Name: \" + self.value\n    }\n}\nlet my_tool = Task(\"my_tool\")\nmy_tool.show()",
+    "output": "class Task(value) {\n    def show(self) {\n        print \"Name: \" + self.value\n    }\n}\nlet my_tool: Task = Task(\"my_tool\")\nmy_tool.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11914,7 +11914,7 @@
   {
     "instruction": "Define a Item class that has speed and a present method. Create an instance.",
     "input": "",
-    "output": "class Item(speed) {\n    def present(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet new_person = Item(\"new_person\")\nnew_person.present()",
+    "output": "class Item(speed) {\n    def present(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet new_person: Item = Item(\"new_person\")\nnew_person.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11922,7 +11922,7 @@
   {
     "instruction": "Build a Book class with a age field and status method. Instantiate it.",
     "input": "",
-    "output": "class Book(age) {\n    def status(self) {\n        print self.age\n    }\n}\nlet item_car = Book(\"item_car\")\nitem_car.status()",
+    "output": "class Book(age) {\n    def status(self) {\n        print self.age\n    }\n}\nlet item_car: Book = Book(\"item_car\")\nitem_car.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11930,7 +11930,7 @@
   {
     "instruction": "Build a Tool class with a grade field and present method. Instantiate it.",
     "input": "",
-    "output": "class Tool(grade) {\n    def present(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet inst_student = Tool(\"inst_student\")\ninst_student.present()",
+    "output": "class Tool(grade) {\n    def present(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet inst_student: Tool = Tool(\"inst_student\")\ninst_student.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11938,7 +11938,7 @@
   {
     "instruction": "Build a Book class with a color field and info method. Instantiate it.",
     "input": "",
-    "output": "class Book(color) {\n    def info(self) {\n        print \"Name: \" + self.color\n    }\n}\nlet item_002 = Book(\"item_002\")\nitem_002.info()",
+    "output": "class Book(color) {\n    def info(self) {\n        print \"Name: \" + self.color\n    }\n}\nlet item_002: Book = Book(\"item_002\")\nitem_002.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11946,7 +11946,7 @@
   {
     "instruction": "Define a Game class that has name and a get_name method. Create an instance.",
     "input": "",
-    "output": "class Game(name) {\n    def get_name(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet a_001 = Game(\"a_001\")\na_001.get_name()",
+    "output": "class Game(name) {\n    def get_name(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet a_001: Game = Game(\"a_001\")\na_001.get_name()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11954,7 +11954,7 @@
   {
     "instruction": "Define a Widget class that has weight and a present method. Create an instance.",
     "input": "",
-    "output": "class Widget(weight) {\n    def present(self) {\n        print \"Name: \" + self.weight\n    }\n}\nlet obj_task = Widget(\"obj_task\")\nobj_task.present()",
+    "output": "class Widget(weight) {\n    def present(self) {\n        print \"Name: \" + self.weight\n    }\n}\nlet obj_task: Widget = Widget(\"obj_task\")\nobj_task.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11962,7 +11962,7 @@
   {
     "instruction": "Write a Shape class with count property and present method. Make an instance.",
     "input": "",
-    "output": "class Shape(count) {\n    def present(self) {\n        print \"This object is named \" + self.count\n    }\n}\nlet new_person = Shape(\"new_person\")\nnew_person.present()",
+    "output": "class Shape(count) {\n    def present(self) {\n        print \"This object is named \" + self.count\n    }\n}\nlet new_person: Shape = Shape(\"new_person\")\nnew_person.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11970,7 +11970,7 @@
   {
     "instruction": "Build a Game class with a count field and status method. Instantiate it.",
     "input": "",
-    "output": "class Game(count) {\n    def status(self) {\n        print \"This object is named \" + self.count\n    }\n}\nlet item_machine = Game(\"item_machine\")\nitem_machine.status()",
+    "output": "class Game(count) {\n    def status(self) {\n        print \"This object is named \" + self.count\n    }\n}\nlet item_machine: Game = Game(\"item_machine\")\nitem_machine.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11978,7 +11978,7 @@
   {
     "instruction": "Define a Person class that has score and a details method. Create an instance.",
     "input": "",
-    "output": "class Person(score) {\n    def details(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet item_Y = Person(\"item_Y\")\nitem_Y.details()",
+    "output": "class Person(score) {\n    def details(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet item_Y: Person = Person(\"item_Y\")\nitem_Y.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11986,7 +11986,7 @@
   {
     "instruction": "Build a Dog class with a status field and get_info method. Instantiate it.",
     "input": "",
-    "output": "class Dog(status) {\n    def get_info(self) {\n        print self.status\n    }\n}\nlet item_tool = Dog(\"item_tool\")\nitem_tool.get_info()",
+    "output": "class Dog(status) {\n    def get_info(self) {\n        print self.status\n    }\n}\nlet item_tool: Dog = Dog(\"item_tool\")\nitem_tool.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -11994,7 +11994,7 @@
   {
     "instruction": "Define a Building class that has score and a display method. Create an instance.",
     "input": "",
-    "output": "class Building(score) {\n    def display(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet a_dog = Building(\"a_dog\")\na_dog.display()",
+    "output": "class Building(score) {\n    def display(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet a_dog: Building = Building(\"a_dog\")\na_dog.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12002,7 +12002,7 @@
   {
     "instruction": "Create a Game class with a grade attribute and a to_string method, then instantiate it.",
     "input": "",
-    "output": "class Game(grade) {\n    def to_string(self) {\n        print \"Name: \" + self.grade\n    }\n}\nlet the_user = Game(\"the_user\")\nthe_user.to_string()",
+    "output": "class Game(grade) {\n    def to_string(self) {\n        print \"Name: \" + self.grade\n    }\n}\nlet the_user: Game = Game(\"the_user\")\nthe_user.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12010,7 +12010,7 @@
   {
     "instruction": "Create a Game class with a grade attribute and a show method, then instantiate it.",
     "input": "",
-    "output": "class Game(grade) {\n    def show(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet my_user = Game(\"my_user\")\nmy_user.show()",
+    "output": "class Game(grade) {\n    def show(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet my_user: Game = Game(\"my_user\")\nmy_user.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12018,7 +12018,7 @@
   {
     "instruction": "Write a Building class with speed property and details method. Make an instance.",
     "input": "",
-    "output": "class Building(speed) {\n    def details(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet new_dog = Building(\"new_dog\")\nnew_dog.details()",
+    "output": "class Building(speed) {\n    def details(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet new_dog: Building = Building(\"new_dog\")\nnew_dog.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12026,7 +12026,7 @@
   {
     "instruction": "Write a Robot class with speed property and report method. Make an instance.",
     "input": "",
-    "output": "class Robot(speed) {\n    def report(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet my_002 = Robot(\"my_002\")\nmy_002.report()",
+    "output": "class Robot(speed) {\n    def report(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet my_002: Robot = Robot(\"my_002\")\nmy_002.report()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12034,7 +12034,7 @@
   {
     "instruction": "Define a Book class that has name and a status method. Create an instance.",
     "input": "",
-    "output": "class Book(name) {\n    def status(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet item_A = Book(\"item_A\")\nitem_A.status()",
+    "output": "class Book(name) {\n    def status(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet item_A: Book = Book(\"item_A\")\nitem_A.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12042,7 +12042,7 @@
   {
     "instruction": "Write a Game class with label property and describe method. Make an instance.",
     "input": "",
-    "output": "class Game(label) {\n    def describe(self) {\n        print \"Name: \" + self.label\n    }\n}\nlet my_bot = Game(\"my_bot\")\nmy_bot.describe()",
+    "output": "class Game(label) {\n    def describe(self) {\n        print \"Name: \" + self.label\n    }\n}\nlet my_bot: Game = Game(\"my_bot\")\nmy_bot.describe()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12050,7 +12050,7 @@
   {
     "instruction": "Implement a Book class containing value and a introduce method, then create an object.",
     "input": "",
-    "output": "class Book(value) {\n    def introduce(self) {\n        print self.value\n    }\n}\nlet inst_B = Book(\"inst_B\")\ninst_B.introduce()",
+    "output": "class Book(value) {\n    def introduce(self) {\n        print self.value\n    }\n}\nlet inst_B: Book = Book(\"inst_B\")\ninst_B.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12058,7 +12058,7 @@
   {
     "instruction": "Define a Shape class that has size and a status method. Create an instance.",
     "input": "",
-    "output": "class Shape(size) {\n    def status(self) {\n        print \"This object is named \" + self.size\n    }\n}\nlet my_robot = Shape(\"my_robot\")\nmy_robot.status()",
+    "output": "class Shape(size) {\n    def status(self) {\n        print \"This object is named \" + self.size\n    }\n}\nlet my_robot: Shape = Shape(\"my_robot\")\nmy_robot.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12066,7 +12066,7 @@
   {
     "instruction": "Build a Widget class with a id field and display method. Instantiate it.",
     "input": "",
-    "output": "class Widget(id) {\n    def display(self) {\n        print self.id\n    }\n}\nlet my_A = Widget(\"my_A\")\nmy_A.display()",
+    "output": "class Widget(id) {\n    def display(self) {\n        print self.id\n    }\n}\nlet my_A: Widget = Widget(\"my_A\")\nmy_A.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12074,7 +12074,7 @@
   {
     "instruction": "Write a Building class with label property and details method. Make an instance.",
     "input": "",
-    "output": "class Building(label) {\n    def details(self) {\n        print \"This object is named \" + self.label\n    }\n}\nlet obj_student = Building(\"obj_student\")\nobj_student.details()",
+    "output": "class Building(label) {\n    def details(self) {\n        print \"This object is named \" + self.label\n    }\n}\nlet obj_student: Building = Building(\"obj_student\")\nobj_student.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12082,7 +12082,7 @@
   {
     "instruction": "Implement a Robot class containing label and a show method, then create an object.",
     "input": "",
-    "output": "class Robot(label) {\n    def show(self) {\n        print \"Name: \" + self.label\n    }\n}\nlet the_X = Robot(\"the_X\")\nthe_X.show()",
+    "output": "class Robot(label) {\n    def show(self) {\n        print \"Name: \" + self.label\n    }\n}\nlet the_X: Robot = Robot(\"the_X\")\nthe_X.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12090,7 +12090,7 @@
   {
     "instruction": "Build a Car class with a value field and show method. Instantiate it.",
     "input": "",
-    "output": "class Car(value) {\n    def show(self) {\n        print self.value\n    }\n}\nlet my_B = Car(\"my_B\")\nmy_B.show()",
+    "output": "class Car(value) {\n    def show(self) {\n        print self.value\n    }\n}\nlet my_B: Car = Car(\"my_B\")\nmy_B.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12098,7 +12098,7 @@
   {
     "instruction": "Implement a User class containing score and a get_info method, then create an object.",
     "input": "",
-    "output": "class User(score) {\n    def get_info(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet my_Z = User(\"my_Z\")\nmy_Z.get_info()",
+    "output": "class User(score) {\n    def get_info(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet my_Z: User = User(\"my_Z\")\nmy_Z.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12106,7 +12106,7 @@
   {
     "instruction": "Write a Animal class with level property and describe method. Make an instance.",
     "input": "",
-    "output": "class Animal(level) {\n    def describe(self) {\n        print \"Name: \" + self.level\n    }\n}\nlet a_dog = Animal(\"a_dog\")\na_dog.describe()",
+    "output": "class Animal(level) {\n    def describe(self) {\n        print \"Name: \" + self.level\n    }\n}\nlet a_dog: Animal = Animal(\"a_dog\")\na_dog.describe()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12114,7 +12114,7 @@
   {
     "instruction": "Define a Student class that has count and a print_info method. Create an instance.",
     "input": "",
-    "output": "class Student(count) {\n    def print_info(self) {\n        print self.count\n    }\n}\nlet obj_shape = Student(\"obj_shape\")\nobj_shape.print_info()",
+    "output": "class Student(count) {\n    def print_info(self) {\n        print self.count\n    }\n}\nlet obj_shape: Student = Student(\"obj_shape\")\nobj_shape.print_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12122,7 +12122,7 @@
   {
     "instruction": "Define a Machine class that has value and a show method. Create an instance.",
     "input": "",
-    "output": "class Machine(value) {\n    def show(self) {\n        print \"This object is named \" + self.value\n    }\n}\nlet item_Z = Machine(\"item_Z\")\nitem_Z.show()",
+    "output": "class Machine(value) {\n    def show(self) {\n        print \"This object is named \" + self.value\n    }\n}\nlet item_Z: Machine = Machine(\"item_Z\")\nitem_Z.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12130,7 +12130,7 @@
   {
     "instruction": "Create a Vehicle class with a status attribute and a info method, then instantiate it.",
     "input": "",
-    "output": "class Vehicle(status) {\n    def info(self) {\n        print \"This object is named \" + self.status\n    }\n}\nlet item_student = Vehicle(\"item_student\")\nitem_student.info()",
+    "output": "class Vehicle(status) {\n    def info(self) {\n        print \"This object is named \" + self.status\n    }\n}\nlet item_student: Vehicle = Vehicle(\"item_student\")\nitem_student.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12138,7 +12138,7 @@
   {
     "instruction": "Create a Dog class with a weight attribute and a details method, then instantiate it.",
     "input": "",
-    "output": "class Dog(weight) {\n    def details(self) {\n        print self.weight + \" is the name\"\n    }\n}\nlet my_person = Dog(\"my_person\")\nmy_person.details()",
+    "output": "class Dog(weight) {\n    def details(self) {\n        print self.weight + \" is the name\"\n    }\n}\nlet my_person: Dog = Dog(\"my_person\")\nmy_person.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12146,7 +12146,7 @@
   {
     "instruction": "Implement a Shape class containing value and a get_name method, then create an object.",
     "input": "",
-    "output": "class Shape(value) {\n    def get_name(self) {\n        print self.value + \" is the name\"\n    }\n}\nlet item_C = Shape(\"item_C\")\nitem_C.get_name()",
+    "output": "class Shape(value) {\n    def get_name(self) {\n        print self.value + \" is the name\"\n    }\n}\nlet item_C: Shape = Shape(\"item_C\")\nitem_C.get_name()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12154,7 +12154,7 @@
   {
     "instruction": "Write a Dog class with count property and reveal method. Make an instance.",
     "input": "",
-    "output": "class Dog(count) {\n    def reveal(self) {\n        print self.count\n    }\n}\nlet the_animal = Dog(\"the_animal\")\nthe_animal.reveal()",
+    "output": "class Dog(count) {\n    def reveal(self) {\n        print self.count\n    }\n}\nlet the_animal: Dog = Dog(\"the_animal\")\nthe_animal.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12162,7 +12162,7 @@
   {
     "instruction": "Implement a Tool class containing weight and a display method, then create an object.",
     "input": "",
-    "output": "class Tool(weight) {\n    def display(self) {\n        print \"This object is named \" + self.weight\n    }\n}\nlet item_tool = Tool(\"item_tool\")\nitem_tool.display()",
+    "output": "class Tool(weight) {\n    def display(self) {\n        print \"This object is named \" + self.weight\n    }\n}\nlet item_tool: Tool = Tool(\"item_tool\")\nitem_tool.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12170,7 +12170,7 @@
   {
     "instruction": "Implement a Game class containing grade and a get_name method, then create an object.",
     "input": "",
-    "output": "class Game(grade) {\n    def get_name(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet a_book = Game(\"a_book\")\na_book.get_name()",
+    "output": "class Game(grade) {\n    def get_name(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet a_book: Game = Game(\"a_book\")\na_book.get_name()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12178,7 +12178,7 @@
   {
     "instruction": "Create a Machine class with a grade attribute and a present method, then instantiate it.",
     "input": "",
-    "output": "class Machine(grade) {\n    def present(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet inst_device = Machine(\"inst_device\")\ninst_device.present()",
+    "output": "class Machine(grade) {\n    def present(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet inst_device: Machine = Machine(\"inst_device\")\ninst_device.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12186,7 +12186,7 @@
   {
     "instruction": "Build a Car class with a type field and print_info method. Instantiate it.",
     "input": "",
-    "output": "class Car(type) {\n    def print_info(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet item_book = Car(\"item_book\")\nitem_book.print_info()",
+    "output": "class Car(type) {\n    def print_info(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet item_book: Car = Car(\"item_book\")\nitem_book.print_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12194,7 +12194,7 @@
   {
     "instruction": "Write a Tool class with age property and display method. Make an instance.",
     "input": "",
-    "output": "class Tool(age) {\n    def display(self) {\n        print self.age + \" is the name\"\n    }\n}\nlet a_001 = Tool(\"a_001\")\na_001.display()",
+    "output": "class Tool(age) {\n    def display(self) {\n        print self.age + \" is the name\"\n    }\n}\nlet a_001: Tool = Tool(\"a_001\")\na_001.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12202,7 +12202,7 @@
   {
     "instruction": "Implement a Game class containing label and a introduce method, then create an object.",
     "input": "",
-    "output": "class Game(label) {\n    def introduce(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet new_book = Game(\"new_book\")\nnew_book.introduce()",
+    "output": "class Game(label) {\n    def introduce(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet new_book: Game = Game(\"new_book\")\nnew_book.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12210,7 +12210,7 @@
   {
     "instruction": "Build a Game class with a name field and introduce method. Instantiate it.",
     "input": "",
-    "output": "class Game(name) {\n    def introduce(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet item_tool = Game(\"item_tool\")\nitem_tool.introduce()",
+    "output": "class Game(name) {\n    def introduce(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet item_tool: Game = Game(\"item_tool\")\nitem_tool.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12218,7 +12218,7 @@
   {
     "instruction": "Implement a Animal class containing status and a present method, then create an object.",
     "input": "",
-    "output": "class Animal(status) {\n    def present(self) {\n        print self.status + \" is the name\"\n    }\n}\nlet my_dog = Animal(\"my_dog\")\nmy_dog.present()",
+    "output": "class Animal(status) {\n    def present(self) {\n        print self.status + \" is the name\"\n    }\n}\nlet my_dog: Animal = Animal(\"my_dog\")\nmy_dog.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12226,7 +12226,7 @@
   {
     "instruction": "Create a Building class with a count attribute and a introduce method, then instantiate it.",
     "input": "",
-    "output": "class Building(count) {\n    def introduce(self) {\n        print \"Name: \" + self.count\n    }\n}\nlet obj_book = Building(\"obj_book\")\nobj_book.introduce()",
+    "output": "class Building(count) {\n    def introduce(self) {\n        print \"Name: \" + self.count\n    }\n}\nlet obj_book: Building = Building(\"obj_book\")\nobj_book.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12234,7 +12234,7 @@
   {
     "instruction": "Define a Widget class that has status and a present method. Create an instance.",
     "input": "",
-    "output": "class Widget(status) {\n    def present(self) {\n        print self.status\n    }\n}\nlet new_robot = Widget(\"new_robot\")\nnew_robot.present()",
+    "output": "class Widget(status) {\n    def present(self) {\n        print self.status\n    }\n}\nlet new_robot: Widget = Widget(\"new_robot\")\nnew_robot.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12242,7 +12242,7 @@
   {
     "instruction": "Implement a Device class containing count and a reveal method, then create an object.",
     "input": "",
-    "output": "class Device(count) {\n    def reveal(self) {\n        print self.count\n    }\n}\nlet a_tool = Device(\"a_tool\")\na_tool.reveal()",
+    "output": "class Device(count) {\n    def reveal(self) {\n        print self.count\n    }\n}\nlet a_tool: Device = Device(\"a_tool\")\na_tool.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12250,7 +12250,7 @@
   {
     "instruction": "Write a Widget class with color property and reveal method. Make an instance.",
     "input": "",
-    "output": "class Widget(color) {\n    def reveal(self) {\n        print \"This object is named \" + self.color\n    }\n}\nlet new_tool = Widget(\"new_tool\")\nnew_tool.reveal()",
+    "output": "class Widget(color) {\n    def reveal(self) {\n        print \"This object is named \" + self.color\n    }\n}\nlet new_tool: Widget = Widget(\"new_tool\")\nnew_tool.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12258,7 +12258,7 @@
   {
     "instruction": "Implement a Car class containing label and a info method, then create an object.",
     "input": "",
-    "output": "class Car(label) {\n    def info(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet inst_tool = Car(\"inst_tool\")\ninst_tool.info()",
+    "output": "class Car(label) {\n    def info(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet inst_tool: Car = Car(\"inst_tool\")\ninst_tool.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12266,7 +12266,7 @@
   {
     "instruction": "Define a Animal class that has size and a display method. Create an instance.",
     "input": "",
-    "output": "class Animal(size) {\n    def display(self) {\n        print \"This object is named \" + self.size\n    }\n}\nlet my_003 = Animal(\"my_003\")\nmy_003.display()",
+    "output": "class Animal(size) {\n    def display(self) {\n        print \"This object is named \" + self.size\n    }\n}\nlet my_003: Animal = Animal(\"my_003\")\nmy_003.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12274,7 +12274,7 @@
   {
     "instruction": "Write a Building class with type property and report method. Make an instance.",
     "input": "",
-    "output": "class Building(type) {\n    def report(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet inst_car = Building(\"inst_car\")\ninst_car.report()",
+    "output": "class Building(type) {\n    def report(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet inst_car: Building = Building(\"inst_car\")\ninst_car.report()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12282,7 +12282,7 @@
   {
     "instruction": "Implement a Game class containing size and a print_info method, then create an object.",
     "input": "",
-    "output": "class Game(size) {\n    def print_info(self) {\n        print \"Name: \" + self.size\n    }\n}\nlet a_002 = Game(\"a_002\")\na_002.print_info()",
+    "output": "class Game(size) {\n    def print_info(self) {\n        print \"Name: \" + self.size\n    }\n}\nlet a_002: Game = Game(\"a_002\")\na_002.print_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12290,7 +12290,7 @@
   {
     "instruction": "Define a Student class that has color and a announce method. Create an instance.",
     "input": "",
-    "output": "class Student(color) {\n    def announce(self) {\n        print \"This object is named \" + self.color\n    }\n}\nlet my_task = Student(\"my_task\")\nmy_task.announce()",
+    "output": "class Student(color) {\n    def announce(self) {\n        print \"This object is named \" + self.color\n    }\n}\nlet my_task: Student = Student(\"my_task\")\nmy_task.announce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12298,7 +12298,7 @@
   {
     "instruction": "Write a Car class with count property and reveal method. Make an instance.",
     "input": "",
-    "output": "class Car(count) {\n    def reveal(self) {\n        print self.count\n    }\n}\nlet item_shape = Car(\"item_shape\")\nitem_shape.reveal()",
+    "output": "class Car(count) {\n    def reveal(self) {\n        print self.count\n    }\n}\nlet item_shape: Car = Car(\"item_shape\")\nitem_shape.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12306,7 +12306,7 @@
   {
     "instruction": "Define a City class that has value and a status method. Create an instance.",
     "input": "",
-    "output": "class City(value) {\n    def status(self) {\n        print self.value + \" is the name\"\n    }\n}\nlet a_book = City(\"a_book\")\na_book.status()",
+    "output": "class City(value) {\n    def status(self) {\n        print self.value + \" is the name\"\n    }\n}\nlet a_book: City = City(\"a_book\")\na_book.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12314,7 +12314,7 @@
   {
     "instruction": "Define a Building class that has size and a display method. Create an instance.",
     "input": "",
-    "output": "class Building(size) {\n    def display(self) {\n        print \"This object is named \" + self.size\n    }\n}\nlet the_student = Building(\"the_student\")\nthe_student.display()",
+    "output": "class Building(size) {\n    def display(self) {\n        print \"This object is named \" + self.size\n    }\n}\nlet the_student: Building = Building(\"the_student\")\nthe_student.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12322,7 +12322,7 @@
   {
     "instruction": "Implement a Robot class containing speed and a to_string method, then create an object.",
     "input": "",
-    "output": "class Robot(speed) {\n    def to_string(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet inst_tool = Robot(\"inst_tool\")\ninst_tool.to_string()",
+    "output": "class Robot(speed) {\n    def to_string(self) {\n        print \"Name: \" + self.speed\n    }\n}\nlet inst_tool: Robot = Robot(\"inst_tool\")\ninst_tool.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12330,7 +12330,7 @@
   {
     "instruction": "Implement a Widget class containing grade and a display method, then create an object.",
     "input": "",
-    "output": "class Widget(grade) {\n    def display(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet my_animal = Widget(\"my_animal\")\nmy_animal.display()",
+    "output": "class Widget(grade) {\n    def display(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet my_animal: Widget = Widget(\"my_animal\")\nmy_animal.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12338,7 +12338,7 @@
   {
     "instruction": "Create a Building class with a type attribute and a present method, then instantiate it.",
     "input": "",
-    "output": "class Building(type) {\n    def present(self) {\n        print \"Name: \" + self.type\n    }\n}\nlet new_X = Building(\"new_X\")\nnew_X.present()",
+    "output": "class Building(type) {\n    def present(self) {\n        print \"Name: \" + self.type\n    }\n}\nlet new_X: Building = Building(\"new_X\")\nnew_X.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12346,7 +12346,7 @@
   {
     "instruction": "Build a Tool class with a status field and display method. Instantiate it.",
     "input": "",
-    "output": "class Tool(status) {\n    def display(self) {\n        print self.status + \" is the name\"\n    }\n}\nlet new_task = Tool(\"new_task\")\nnew_task.display()",
+    "output": "class Tool(status) {\n    def display(self) {\n        print self.status + \" is the name\"\n    }\n}\nlet new_task: Tool = Tool(\"new_task\")\nnew_task.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12354,7 +12354,7 @@
   {
     "instruction": "Build a Book class with a grade field and announce method. Instantiate it.",
     "input": "",
-    "output": "class Book(grade) {\n    def announce(self) {\n        print \"Name: \" + self.grade\n    }\n}\nlet item_C = Book(\"item_C\")\nitem_C.announce()",
+    "output": "class Book(grade) {\n    def announce(self) {\n        print \"Name: \" + self.grade\n    }\n}\nlet item_C: Book = Book(\"item_C\")\nitem_C.announce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12362,7 +12362,7 @@
   {
     "instruction": "Create a Book class with a type attribute and a to_string method, then instantiate it.",
     "input": "",
-    "output": "class Book(type) {\n    def to_string(self) {\n        print \"Name: \" + self.type\n    }\n}\nlet item_robot = Book(\"item_robot\")\nitem_robot.to_string()",
+    "output": "class Book(type) {\n    def to_string(self) {\n        print \"Name: \" + self.type\n    }\n}\nlet item_robot: Book = Book(\"item_robot\")\nitem_robot.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12370,7 +12370,7 @@
   {
     "instruction": "Define a Shape class that has color and a info method. Create an instance.",
     "input": "",
-    "output": "class Shape(color) {\n    def info(self) {\n        print self.color + \" is the name\"\n    }\n}\nlet a_002 = Shape(\"a_002\")\na_002.info()",
+    "output": "class Shape(color) {\n    def info(self) {\n        print self.color + \" is the name\"\n    }\n}\nlet a_002: Shape = Shape(\"a_002\")\na_002.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12378,7 +12378,7 @@
   {
     "instruction": "Write a Building class with grade property and status method. Make an instance.",
     "input": "",
-    "output": "class Building(grade) {\n    def status(self) {\n        print \"Name: \" + self.grade\n    }\n}\nlet item_dog = Building(\"item_dog\")\nitem_dog.status()",
+    "output": "class Building(grade) {\n    def status(self) {\n        print \"Name: \" + self.grade\n    }\n}\nlet item_dog: Building = Building(\"item_dog\")\nitem_dog.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12386,7 +12386,7 @@
   {
     "instruction": "Build a City class with a weight field and info method. Instantiate it.",
     "input": "",
-    "output": "class City(weight) {\n    def info(self) {\n        print self.weight\n    }\n}\nlet obj_animal = City(\"obj_animal\")\nobj_animal.info()",
+    "output": "class City(weight) {\n    def info(self) {\n        print self.weight\n    }\n}\nlet obj_animal: City = City(\"obj_animal\")\nobj_animal.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12394,7 +12394,7 @@
   {
     "instruction": "Define a Building class that has status and a info method. Create an instance.",
     "input": "",
-    "output": "class Building(status) {\n    def info(self) {\n        print \"Name: \" + self.status\n    }\n}\nlet inst_X = Building(\"inst_X\")\ninst_X.info()",
+    "output": "class Building(status) {\n    def info(self) {\n        print \"Name: \" + self.status\n    }\n}\nlet inst_X: Building = Building(\"inst_X\")\ninst_X.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12402,7 +12402,7 @@
   {
     "instruction": "Build a Widget class with a level field and report method. Instantiate it.",
     "input": "",
-    "output": "class Widget(level) {\n    def report(self) {\n        print self.level\n    }\n}\nlet inst_shape = Widget(\"inst_shape\")\ninst_shape.report()",
+    "output": "class Widget(level) {\n    def report(self) {\n        print self.level\n    }\n}\nlet inst_shape: Widget = Widget(\"inst_shape\")\ninst_shape.report()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12410,7 +12410,7 @@
   {
     "instruction": "Write a Robot class with age property and describe method. Make an instance.",
     "input": "",
-    "output": "class Robot(age) {\n    def describe(self) {\n        print \"Name: \" + self.age\n    }\n}\nlet obj_X = Robot(\"obj_X\")\nobj_X.describe()",
+    "output": "class Robot(age) {\n    def describe(self) {\n        print \"Name: \" + self.age\n    }\n}\nlet obj_X: Robot = Robot(\"obj_X\")\nobj_X.describe()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12418,7 +12418,7 @@
   {
     "instruction": "Implement a Planet class containing type and a print_info method, then create an object.",
     "input": "",
-    "output": "class Planet(type) {\n    def print_info(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet obj_bot = Planet(\"obj_bot\")\nobj_bot.print_info()",
+    "output": "class Planet(type) {\n    def print_info(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet obj_bot: Planet = Planet(\"obj_bot\")\nobj_bot.print_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12426,7 +12426,7 @@
   {
     "instruction": "Implement a Shape class containing id and a details method, then create an object.",
     "input": "",
-    "output": "class Shape(id) {\n    def details(self) {\n        print self.id + \" is the name\"\n    }\n}\nlet item_001 = Shape(\"item_001\")\nitem_001.details()",
+    "output": "class Shape(id) {\n    def details(self) {\n        print self.id + \" is the name\"\n    }\n}\nlet item_001: Shape = Shape(\"item_001\")\nitem_001.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12434,7 +12434,7 @@
   {
     "instruction": "Implement a Game class containing age and a introduce method, then create an object.",
     "input": "",
-    "output": "class Game(age) {\n    def introduce(self) {\n        print \"This object is named \" + self.age\n    }\n}\nlet my_book = Game(\"my_book\")\nmy_book.introduce()",
+    "output": "class Game(age) {\n    def introduce(self) {\n        print \"This object is named \" + self.age\n    }\n}\nlet my_book: Game = Game(\"my_book\")\nmy_book.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12442,7 +12442,7 @@
   {
     "instruction": "Define a Vehicle class that has id and a details method. Create an instance.",
     "input": "",
-    "output": "class Vehicle(id) {\n    def details(self) {\n        print self.id + \" is the name\"\n    }\n}\nlet a_Y = Vehicle(\"a_Y\")\na_Y.details()",
+    "output": "class Vehicle(id) {\n    def details(self) {\n        print self.id + \" is the name\"\n    }\n}\nlet a_Y: Vehicle = Vehicle(\"a_Y\")\na_Y.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12450,7 +12450,7 @@
   {
     "instruction": "Define a Tool class that has level and a announce method. Create an instance.",
     "input": "",
-    "output": "class Tool(level) {\n    def announce(self) {\n        print self.level + \" is the name\"\n    }\n}\nlet a_machine = Tool(\"a_machine\")\na_machine.announce()",
+    "output": "class Tool(level) {\n    def announce(self) {\n        print self.level + \" is the name\"\n    }\n}\nlet a_machine: Tool = Tool(\"a_machine\")\na_machine.announce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12458,7 +12458,7 @@
   {
     "instruction": "Implement a Building class containing value and a display method, then create an object.",
     "input": "",
-    "output": "class Building(value) {\n    def display(self) {\n        print self.value\n    }\n}\nlet a_item = Building(\"a_item\")\na_item.display()",
+    "output": "class Building(value) {\n    def display(self) {\n        print self.value\n    }\n}\nlet a_item: Building = Building(\"a_item\")\na_item.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12466,7 +12466,7 @@
   {
     "instruction": "Create a Animal class with a id attribute and a details method, then instantiate it.",
     "input": "",
-    "output": "class Animal(id) {\n    def details(self) {\n        print self.id + \" is the name\"\n    }\n}\nlet the_car = Animal(\"the_car\")\nthe_car.details()",
+    "output": "class Animal(id) {\n    def details(self) {\n        print self.id + \" is the name\"\n    }\n}\nlet the_car: Animal = Animal(\"the_car\")\nthe_car.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12474,7 +12474,7 @@
   {
     "instruction": "Define a User class that has score and a print_info method. Create an instance.",
     "input": "",
-    "output": "class User(score) {\n    def print_info(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet new_item = User(\"new_item\")\nnew_item.print_info()",
+    "output": "class User(score) {\n    def print_info(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet new_item: User = User(\"new_item\")\nnew_item.print_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12482,7 +12482,7 @@
   {
     "instruction": "Implement a Planet class containing level and a show method, then create an object.",
     "input": "",
-    "output": "class Planet(level) {\n    def show(self) {\n        print \"This object is named \" + self.level\n    }\n}\nlet the_book = Planet(\"the_book\")\nthe_book.show()",
+    "output": "class Planet(level) {\n    def show(self) {\n        print \"This object is named \" + self.level\n    }\n}\nlet the_book: Planet = Planet(\"the_book\")\nthe_book.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12490,7 +12490,7 @@
   {
     "instruction": "Create a Vehicle class with a grade attribute and a status method, then instantiate it.",
     "input": "",
-    "output": "class Vehicle(grade) {\n    def status(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet new_bot = Vehicle(\"new_bot\")\nnew_bot.status()",
+    "output": "class Vehicle(grade) {\n    def status(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet new_bot: Vehicle = Vehicle(\"new_bot\")\nnew_bot.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12498,7 +12498,7 @@
   {
     "instruction": "Write a Building class with id property and details method. Make an instance.",
     "input": "",
-    "output": "class Building(id) {\n    def details(self) {\n        print self.id\n    }\n}\nlet the_X = Building(\"the_X\")\nthe_X.details()",
+    "output": "class Building(id) {\n    def details(self) {\n        print self.id\n    }\n}\nlet the_X: Building = Building(\"the_X\")\nthe_X.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12506,7 +12506,7 @@
   {
     "instruction": "Implement a Dog class containing weight and a get_info method, then create an object.",
     "input": "",
-    "output": "class Dog(weight) {\n    def get_info(self) {\n        print self.weight + \" is the name\"\n    }\n}\nlet inst_Z = Dog(\"inst_Z\")\ninst_Z.get_info()",
+    "output": "class Dog(weight) {\n    def get_info(self) {\n        print self.weight + \" is the name\"\n    }\n}\nlet inst_Z: Dog = Dog(\"inst_Z\")\ninst_Z.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12514,7 +12514,7 @@
   {
     "instruction": "Define a City class that has name and a announce method. Create an instance.",
     "input": "",
-    "output": "class City(name) {\n    def announce(self) {\n        print self.name + \" is the name\"\n    }\n}\nlet my_user = City(\"my_user\")\nmy_user.announce()",
+    "output": "class City(name) {\n    def announce(self) {\n        print self.name + \" is the name\"\n    }\n}\nlet my_user: City = City(\"my_user\")\nmy_user.announce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12522,7 +12522,7 @@
   {
     "instruction": "Implement a Machine class containing count and a get_name method, then create an object.",
     "input": "",
-    "output": "class Machine(count) {\n    def get_name(self) {\n        print self.count\n    }\n}\nlet a_robot = Machine(\"a_robot\")\na_robot.get_name()",
+    "output": "class Machine(count) {\n    def get_name(self) {\n        print self.count\n    }\n}\nlet a_robot: Machine = Machine(\"a_robot\")\na_robot.get_name()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12530,7 +12530,7 @@
   {
     "instruction": "Write a Planet class with value property and details method. Make an instance.",
     "input": "",
-    "output": "class Planet(value) {\n    def details(self) {\n        print self.value\n    }\n}\nlet a_C = Planet(\"a_C\")\na_C.details()",
+    "output": "class Planet(value) {\n    def details(self) {\n        print self.value\n    }\n}\nlet a_C: Planet = Planet(\"a_C\")\na_C.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12538,7 +12538,7 @@
   {
     "instruction": "Write a User class with value property and get_info method. Make an instance.",
     "input": "",
-    "output": "class User(value) {\n    def get_info(self) {\n        print self.value\n    }\n}\nlet item_C = User(\"item_C\")\nitem_C.get_info()",
+    "output": "class User(value) {\n    def get_info(self) {\n        print self.value\n    }\n}\nlet item_C: User = User(\"item_C\")\nitem_C.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12546,7 +12546,7 @@
   {
     "instruction": "Build a Book class with a age field and get_name method. Instantiate it.",
     "input": "",
-    "output": "class Book(age) {\n    def get_name(self) {\n        print self.age + \" is the name\"\n    }\n}\nlet a_shape = Book(\"a_shape\")\na_shape.get_name()",
+    "output": "class Book(age) {\n    def get_name(self) {\n        print self.age + \" is the name\"\n    }\n}\nlet a_shape: Book = Book(\"a_shape\")\na_shape.get_name()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12554,7 +12554,7 @@
   {
     "instruction": "Build a Book class with a size field and print_info method. Instantiate it.",
     "input": "",
-    "output": "class Book(size) {\n    def print_info(self) {\n        print self.size\n    }\n}\nlet inst_machine = Book(\"inst_machine\")\ninst_machine.print_info()",
+    "output": "class Book(size) {\n    def print_info(self) {\n        print self.size\n    }\n}\nlet inst_machine: Book = Book(\"inst_machine\")\ninst_machine.print_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12562,7 +12562,7 @@
   {
     "instruction": "Implement a Dog class containing name and a info method, then create an object.",
     "input": "",
-    "output": "class Dog(name) {\n    def info(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet obj_shape = Dog(\"obj_shape\")\nobj_shape.info()",
+    "output": "class Dog(name) {\n    def info(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet obj_shape: Dog = Dog(\"obj_shape\")\nobj_shape.info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12570,7 +12570,7 @@
   {
     "instruction": "Write a Book class with label property and report method. Make an instance.",
     "input": "",
-    "output": "class Book(label) {\n    def report(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet inst_student = Book(\"inst_student\")\ninst_student.report()",
+    "output": "class Book(label) {\n    def report(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet inst_student: Book = Book(\"inst_student\")\ninst_student.report()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12578,7 +12578,7 @@
   {
     "instruction": "Build a Person class with a type field and print_info method. Instantiate it.",
     "input": "",
-    "output": "class Person(type) {\n    def print_info(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet obj_animal = Person(\"obj_animal\")\nobj_animal.print_info()",
+    "output": "class Person(type) {\n    def print_info(self) {\n        print self.type + \" is the name\"\n    }\n}\nlet obj_animal: Person = Person(\"obj_animal\")\nobj_animal.print_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12586,7 +12586,7 @@
   {
     "instruction": "Build a Building class with a score field and to_string method. Instantiate it.",
     "input": "",
-    "output": "class Building(score) {\n    def to_string(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet inst_A = Building(\"inst_A\")\ninst_A.to_string()",
+    "output": "class Building(score) {\n    def to_string(self) {\n        print self.score + \" is the name\"\n    }\n}\nlet inst_A: Building = Building(\"inst_A\")\ninst_A.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12594,7 +12594,7 @@
   {
     "instruction": "Create a Vehicle class with a score attribute and a describe method, then instantiate it.",
     "input": "",
-    "output": "class Vehicle(score) {\n    def describe(self) {\n        print \"This object is named \" + self.score\n    }\n}\nlet a_shape = Vehicle(\"a_shape\")\na_shape.describe()",
+    "output": "class Vehicle(score) {\n    def describe(self) {\n        print \"This object is named \" + self.score\n    }\n}\nlet a_shape: Vehicle = Vehicle(\"a_shape\")\na_shape.describe()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12602,7 +12602,7 @@
   {
     "instruction": "Create a Planet class with a weight attribute and a present method, then instantiate it.",
     "input": "",
-    "output": "class Planet(weight) {\n    def present(self) {\n        print \"This object is named \" + self.weight\n    }\n}\nlet obj_002 = Planet(\"obj_002\")\nobj_002.present()",
+    "output": "class Planet(weight) {\n    def present(self) {\n        print \"This object is named \" + self.weight\n    }\n}\nlet obj_002: Planet = Planet(\"obj_002\")\nobj_002.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12610,7 +12610,7 @@
   {
     "instruction": "Build a Animal class with a status field and present method. Instantiate it.",
     "input": "",
-    "output": "class Animal(status) {\n    def present(self) {\n        print \"Name: \" + self.status\n    }\n}\nlet item_X = Animal(\"item_X\")\nitem_X.present()",
+    "output": "class Animal(status) {\n    def present(self) {\n        print \"Name: \" + self.status\n    }\n}\nlet item_X: Animal = Animal(\"item_X\")\nitem_X.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12618,7 +12618,7 @@
   {
     "instruction": "Build a Dog class with a label field and get_info method. Instantiate it.",
     "input": "",
-    "output": "class Dog(label) {\n    def get_info(self) {\n        print \"This object is named \" + self.label\n    }\n}\nlet the_B = Dog(\"the_B\")\nthe_B.get_info()",
+    "output": "class Dog(label) {\n    def get_info(self) {\n        print \"This object is named \" + self.label\n    }\n}\nlet the_B: Dog = Dog(\"the_B\")\nthe_B.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12626,7 +12626,7 @@
   {
     "instruction": "Build a Book class with a score field and reveal method. Instantiate it.",
     "input": "",
-    "output": "class Book(score) {\n    def reveal(self) {\n        print self.score\n    }\n}\nlet the_robot = Book(\"the_robot\")\nthe_robot.reveal()",
+    "output": "class Book(score) {\n    def reveal(self) {\n        print self.score\n    }\n}\nlet the_robot: Book = Book(\"the_robot\")\nthe_robot.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12634,7 +12634,7 @@
   {
     "instruction": "Define a Item class that has name and a get_info method. Create an instance.",
     "input": "",
-    "output": "class Item(name) {\n    def get_info(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet a_user = Item(\"a_user\")\na_user.get_info()",
+    "output": "class Item(name) {\n    def get_info(self) {\n        print \"This object is named \" + self.name\n    }\n}\nlet a_user: Item = Item(\"a_user\")\na_user.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12642,7 +12642,7 @@
   {
     "instruction": "Implement a Item class containing type and a to_string method, then create an object.",
     "input": "",
-    "output": "class Item(type) {\n    def to_string(self) {\n        print self.type\n    }\n}\nlet item_Y = Item(\"item_Y\")\nitem_Y.to_string()",
+    "output": "class Item(type) {\n    def to_string(self) {\n        print self.type\n    }\n}\nlet item_Y: Item = Item(\"item_Y\")\nitem_Y.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12650,7 +12650,7 @@
   {
     "instruction": "Implement a Book class containing value and a details method, then create an object.",
     "input": "",
-    "output": "class Book(value) {\n    def details(self) {\n        print \"This object is named \" + self.value\n    }\n}\nlet inst_shape = Book(\"inst_shape\")\ninst_shape.details()",
+    "output": "class Book(value) {\n    def details(self) {\n        print \"This object is named \" + self.value\n    }\n}\nlet inst_shape: Book = Book(\"inst_shape\")\ninst_shape.details()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12658,7 +12658,7 @@
   {
     "instruction": "Build a Tool class with a color field and get_info method. Instantiate it.",
     "input": "",
-    "output": "class Tool(color) {\n    def get_info(self) {\n        print self.color + \" is the name\"\n    }\n}\nlet inst_shape = Tool(\"inst_shape\")\ninst_shape.get_info()",
+    "output": "class Tool(color) {\n    def get_info(self) {\n        print self.color + \" is the name\"\n    }\n}\nlet inst_shape: Tool = Tool(\"inst_shape\")\ninst_shape.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12666,7 +12666,7 @@
   {
     "instruction": "Write a Animal class with label property and get_info method. Make an instance.",
     "input": "",
-    "output": "class Animal(label) {\n    def get_info(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet the_item = Animal(\"the_item\")\nthe_item.get_info()",
+    "output": "class Animal(label) {\n    def get_info(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet the_item: Animal = Animal(\"the_item\")\nthe_item.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12674,7 +12674,7 @@
   {
     "instruction": "Define a Device class that has weight and a present method. Create an instance.",
     "input": "",
-    "output": "class Device(weight) {\n    def present(self) {\n        print \"This object is named \" + self.weight\n    }\n}\nlet a_002 = Device(\"a_002\")\na_002.present()",
+    "output": "class Device(weight) {\n    def present(self) {\n        print \"This object is named \" + self.weight\n    }\n}\nlet a_002: Device = Device(\"a_002\")\na_002.present()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12682,7 +12682,7 @@
   {
     "instruction": "Write a Tool class with id property and show method. Make an instance.",
     "input": "",
-    "output": "class Tool(id) {\n    def show(self) {\n        print self.id + \" is the name\"\n    }\n}\nlet inst_003 = Tool(\"inst_003\")\ninst_003.show()",
+    "output": "class Tool(id) {\n    def show(self) {\n        print self.id + \" is the name\"\n    }\n}\nlet inst_003: Tool = Tool(\"inst_003\")\ninst_003.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12690,7 +12690,7 @@
   {
     "instruction": "Implement a Student class containing label and a reveal method, then create an object.",
     "input": "",
-    "output": "class Student(label) {\n    def reveal(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet inst_machine = Student(\"inst_machine\")\ninst_machine.reveal()",
+    "output": "class Student(label) {\n    def reveal(self) {\n        print self.label + \" is the name\"\n    }\n}\nlet inst_machine: Student = Student(\"inst_machine\")\ninst_machine.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12698,7 +12698,7 @@
   {
     "instruction": "Create a Book class with a weight attribute and a describe method, then instantiate it.",
     "input": "",
-    "output": "class Book(weight) {\n    def describe(self) {\n        print self.weight + \" is the name\"\n    }\n}\nlet a_002 = Book(\"a_002\")\na_002.describe()",
+    "output": "class Book(weight) {\n    def describe(self) {\n        print self.weight + \" is the name\"\n    }\n}\nlet a_002: Book = Book(\"a_002\")\na_002.describe()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12706,7 +12706,7 @@
   {
     "instruction": "Define a Game class that has status and a introduce method. Create an instance.",
     "input": "",
-    "output": "class Game(status) {\n    def introduce(self) {\n        print self.status + \" is the name\"\n    }\n}\nlet new_person = Game(\"new_person\")\nnew_person.introduce()",
+    "output": "class Game(status) {\n    def introduce(self) {\n        print self.status + \" is the name\"\n    }\n}\nlet new_person: Game = Game(\"new_person\")\nnew_person.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12714,7 +12714,7 @@
   {
     "instruction": "Build a City class with a level field and status method. Instantiate it.",
     "input": "",
-    "output": "class City(level) {\n    def status(self) {\n        print \"Name: \" + self.level\n    }\n}\nlet the_car = City(\"the_car\")\nthe_car.status()",
+    "output": "class City(level) {\n    def status(self) {\n        print \"Name: \" + self.level\n    }\n}\nlet the_car: City = City(\"the_car\")\nthe_car.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12722,7 +12722,7 @@
   {
     "instruction": "Define a Device class that has name and a reveal method. Create an instance.",
     "input": "",
-    "output": "class Device(name) {\n    def reveal(self) {\n        print self.name\n    }\n}\nlet inst_item = Device(\"inst_item\")\ninst_item.reveal()",
+    "output": "class Device(name) {\n    def reveal(self) {\n        print self.name\n    }\n}\nlet inst_item: Device = Device(\"inst_item\")\ninst_item.reveal()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12730,7 +12730,7 @@
   {
     "instruction": "Create a Student class with a type attribute and a show method, then instantiate it.",
     "input": "",
-    "output": "class Student(type) {\n    def show(self) {\n        print \"Name: \" + self.type\n    }\n}\nlet obj_A = Student(\"obj_A\")\nobj_A.show()",
+    "output": "class Student(type) {\n    def show(self) {\n        print \"Name: \" + self.type\n    }\n}\nlet obj_A: Student = Student(\"obj_A\")\nobj_A.show()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12738,7 +12738,7 @@
   {
     "instruction": "Implement a Robot class containing value and a report method, then create an object.",
     "input": "",
-    "output": "class Robot(value) {\n    def report(self) {\n        print \"This object is named \" + self.value\n    }\n}\nlet the_user = Robot(\"the_user\")\nthe_user.report()",
+    "output": "class Robot(value) {\n    def report(self) {\n        print \"This object is named \" + self.value\n    }\n}\nlet the_user: Robot = Robot(\"the_user\")\nthe_user.report()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12746,7 +12746,7 @@
   {
     "instruction": "Create a Item class with a count attribute and a status method, then instantiate it.",
     "input": "",
-    "output": "class Item(count) {\n    def status(self) {\n        print self.count\n    }\n}\nlet a_animal = Item(\"a_animal\")\na_animal.status()",
+    "output": "class Item(count) {\n    def status(self) {\n        print self.count\n    }\n}\nlet a_animal: Item = Item(\"a_animal\")\na_animal.status()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12754,7 +12754,7 @@
   {
     "instruction": "Create a Planet class with a size attribute and a to_string method, then instantiate it.",
     "input": "",
-    "output": "class Planet(size) {\n    def to_string(self) {\n        print \"Name: \" + self.size\n    }\n}\nlet obj_003 = Planet(\"obj_003\")\nobj_003.to_string()",
+    "output": "class Planet(size) {\n    def to_string(self) {\n        print \"Name: \" + self.size\n    }\n}\nlet obj_003: Planet = Planet(\"obj_003\")\nobj_003.to_string()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12762,7 +12762,7 @@
   {
     "instruction": "Implement a Task class containing grade and a announce method, then create an object.",
     "input": "",
-    "output": "class Task(grade) {\n    def announce(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet the_robot = Task(\"the_robot\")\nthe_robot.announce()",
+    "output": "class Task(grade) {\n    def announce(self) {\n        print \"This object is named \" + self.grade\n    }\n}\nlet the_robot: Task = Task(\"the_robot\")\nthe_robot.announce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12770,7 +12770,7 @@
   {
     "instruction": "Create a Person class with a grade attribute and a introduce method, then instantiate it.",
     "input": "",
-    "output": "class Person(grade) {\n    def introduce(self) {\n        print self.grade\n    }\n}\nlet item_animal = Person(\"item_animal\")\nitem_animal.introduce()",
+    "output": "class Person(grade) {\n    def introduce(self) {\n        print self.grade\n    }\n}\nlet item_animal: Person = Person(\"item_animal\")\nitem_animal.introduce()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12778,7 +12778,7 @@
   {
     "instruction": "Write a Shape class with label property and print_info method. Make an instance.",
     "input": "",
-    "output": "class Shape(label) {\n    def print_info(self) {\n        print \"This object is named \" + self.label\n    }\n}\nlet my_shape = Shape(\"my_shape\")\nmy_shape.print_info()",
+    "output": "class Shape(label) {\n    def print_info(self) {\n        print \"This object is named \" + self.label\n    }\n}\nlet my_shape: Shape = Shape(\"my_shape\")\nmy_shape.print_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12786,7 +12786,7 @@
   {
     "instruction": "Implement a City class containing value and a get_info method, then create an object.",
     "input": "",
-    "output": "class City(value) {\n    def get_info(self) {\n        print self.value + \" is the name\"\n    }\n}\nlet the_B = City(\"the_B\")\nthe_B.get_info()",
+    "output": "class City(value) {\n    def get_info(self) {\n        print self.value + \" is the name\"\n    }\n}\nlet the_B: City = City(\"the_B\")\nthe_B.get_info()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -12794,7 +12794,7 @@
   {
     "instruction": "Implement a Item class containing count and a display method, then create an object.",
     "input": "",
-    "output": "class Item(count) {\n    def display(self) {\n        print self.count + \" is the name\"\n    }\n}\nlet a_book = Item(\"a_book\")\na_book.display()",
+    "output": "class Item(count) {\n    def display(self) {\n        print self.count + \" is the name\"\n    }\n}\nlet a_book: Item = Item(\"a_book\")\na_book.display()",
     "category": "oop",
     "difficulty": "advanced",
     "verified": true
@@ -13266,7 +13266,7 @@
   {
     "instruction": "Create a list with the value 18 and print it.",
     "input": "",
-    "output": "let values = [18]\nprint values",
+    "output": "let values: list = [18]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13274,7 +13274,7 @@
   {
     "instruction": "Create a single-element list with 95 and output it.",
     "input": "",
-    "output": "let items = [95]\nprint items",
+    "output": "let items: list = [95]\nprint items",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13282,7 +13282,7 @@
   {
     "instruction": "Create a list with the value 47 and print it.",
     "input": "",
-    "output": "let list_a = [47]\nprint list_a",
+    "output": "let list_a: list = [47]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13290,7 +13290,7 @@
   {
     "instruction": "Set up a list with 94 as its only element and print it.",
     "input": "",
-    "output": "let items = [94]\nprint items",
+    "output": "let items: list = [94]\nprint items",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13298,7 +13298,7 @@
   {
     "instruction": "Store 27 in a list and print the list.",
     "input": "",
-    "output": "let my_list = [27]\nprint my_list",
+    "output": "let my_list: list = [27]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13306,7 +13306,7 @@
   {
     "instruction": "Declare a list containing 34 and output it.",
     "input": "",
-    "output": "let elements = [34]\nprint elements",
+    "output": "let elements: list = [34]\nprint elements",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13314,7 +13314,7 @@
   {
     "instruction": "Create a list with the value 80 and print it.",
     "input": "",
-    "output": "let nums = [80]\nprint nums",
+    "output": "let nums: list = [80]\nprint nums",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13322,7 +13322,7 @@
   {
     "instruction": "Define a list holding 39 and display it.",
     "input": "",
-    "output": "let data = [39]\nprint data",
+    "output": "let data: list = [39]\nprint data",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13330,7 +13330,7 @@
   {
     "instruction": "Initialize a list holding the number 53 and print it.",
     "input": "",
-    "output": "let list_a = [53]\nprint list_a",
+    "output": "let list_a: list = [53]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13338,7 +13338,7 @@
   {
     "instruction": "Set up a list with 61 as its only element and print it.",
     "input": "",
-    "output": "let list_a = [61]\nprint list_a",
+    "output": "let list_a: list = [61]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13346,7 +13346,7 @@
   {
     "instruction": "Build a list containing just 93 and print it.",
     "input": "",
-    "output": "let list_a = [93]\nprint list_a",
+    "output": "let list_a: list = [93]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13354,7 +13354,7 @@
   {
     "instruction": "Define a list holding 7 and display it.",
     "input": "",
-    "output": "let items = [7]\nprint items",
+    "output": "let items: list = [7]\nprint items",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13362,7 +13362,7 @@
   {
     "instruction": "Store 91 in a list and print the list.",
     "input": "",
-    "output": "let data = [91]\nprint data",
+    "output": "let data: list = [91]\nprint data",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13370,7 +13370,7 @@
   {
     "instruction": "Set up a list with 41 as its only element and print it.",
     "input": "",
-    "output": "let items = [41]\nprint items",
+    "output": "let items: list = [41]\nprint items",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13378,7 +13378,7 @@
   {
     "instruction": "Initialize a list holding the number 10 and print it.",
     "input": "",
-    "output": "let collection = [10]\nprint collection",
+    "output": "let collection: list = [10]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13386,7 +13386,7 @@
   {
     "instruction": "Define a list holding 76 and display it.",
     "input": "",
-    "output": "let collection = [76]\nprint collection",
+    "output": "let collection: list = [76]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13394,7 +13394,7 @@
   {
     "instruction": "Initialize a list holding the number 60 and print it.",
     "input": "",
-    "output": "let values = [60]\nprint values",
+    "output": "let values: list = [60]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13402,7 +13402,7 @@
   {
     "instruction": "Create a list with the value 78 and print it.",
     "input": "",
-    "output": "let my_list = [78]\nprint my_list",
+    "output": "let my_list: list = [78]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13410,7 +13410,7 @@
   {
     "instruction": "Create an array containing 98 and print the result.",
     "input": "",
-    "output": "let elements = [98]\nprint elements",
+    "output": "let elements: list = [98]\nprint elements",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13418,7 +13418,7 @@
   {
     "instruction": "Store 71 in a list and print the list.",
     "input": "",
-    "output": "let list_a = [71]\nprint list_a",
+    "output": "let list_a: list = [71]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13426,7 +13426,7 @@
   {
     "instruction": "Store 74 in a list and print the list.",
     "input": "",
-    "output": "let list_a = [74]\nprint list_a",
+    "output": "let list_a: list = [74]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13434,7 +13434,7 @@
   {
     "instruction": "Make a list with one element: 51, then print it.",
     "input": "",
-    "output": "let values = [51]\nprint values",
+    "output": "let values: list = [51]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13442,7 +13442,7 @@
   {
     "instruction": "Build a list containing just 28 and print it.",
     "input": "",
-    "output": "let arr = [28]\nprint arr",
+    "output": "let arr: list = [28]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13450,7 +13450,7 @@
   {
     "instruction": "Initialize a list holding the number 49 and print it.",
     "input": "",
-    "output": "let nums = [49]\nprint nums",
+    "output": "let nums: list = [49]\nprint nums",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13458,7 +13458,7 @@
   {
     "instruction": "Make a list with one element: 100, then print it.",
     "input": "",
-    "output": "let items = [100]\nprint items",
+    "output": "let items: list = [100]\nprint items",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13466,7 +13466,7 @@
   {
     "instruction": "Create a list with the value 26 and print it.",
     "input": "",
-    "output": "let list_a = [26]\nprint list_a",
+    "output": "let list_a: list = [26]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13474,7 +13474,7 @@
   {
     "instruction": "Create a single-element list with 81 and output it.",
     "input": "",
-    "output": "let my_list = [81]\nprint my_list",
+    "output": "let my_list: list = [81]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13482,7 +13482,7 @@
   {
     "instruction": "Make a list with one element: 42, then print it.",
     "input": "",
-    "output": "let values = [42]\nprint values",
+    "output": "let values: list = [42]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13490,7 +13490,7 @@
   {
     "instruction": "Declare a list containing 25 and output it.",
     "input": "",
-    "output": "let items = [25]\nprint items",
+    "output": "let items: list = [25]\nprint items",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13498,7 +13498,7 @@
   {
     "instruction": "Create a single-element list with 31 and output it.",
     "input": "",
-    "output": "let my_list = [31]\nprint my_list",
+    "output": "let my_list: list = [31]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13506,7 +13506,7 @@
   {
     "instruction": "Build a list containing just 72 and print it.",
     "input": "",
-    "output": "let my_list = [72]\nprint my_list",
+    "output": "let my_list: list = [72]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13514,7 +13514,7 @@
   {
     "instruction": "Make a list with one element: 5, then print it.",
     "input": "",
-    "output": "let my_list = [5]\nprint my_list",
+    "output": "let my_list: list = [5]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13522,7 +13522,7 @@
   {
     "instruction": "Define a list holding 43 and display it.",
     "input": "",
-    "output": "let elements = [43]\nprint elements",
+    "output": "let elements: list = [43]\nprint elements",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13530,7 +13530,7 @@
   {
     "instruction": "Make a list with one element: 65, then print it.",
     "input": "",
-    "output": "let collection = [65]\nprint collection",
+    "output": "let collection: list = [65]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13538,7 +13538,7 @@
   {
     "instruction": "Make a list with one element: 86, then print it.",
     "input": "",
-    "output": "let my_list = [86]\nprint my_list",
+    "output": "let my_list: list = [86]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13546,7 +13546,7 @@
   {
     "instruction": "Initialize a list holding the number 57 and print it.",
     "input": "",
-    "output": "let collection = [57]\nprint collection",
+    "output": "let collection: list = [57]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13554,7 +13554,7 @@
   {
     "instruction": "Create an array containing 23 and print the result.",
     "input": "",
-    "output": "let values = [23]\nprint values",
+    "output": "let values: list = [23]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13562,7 +13562,7 @@
   {
     "instruction": "Create a single-element list with 62 and output it.",
     "input": "",
-    "output": "let arr = [62]\nprint arr",
+    "output": "let arr: list = [62]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13570,7 +13570,7 @@
   {
     "instruction": "Create a single-element list with 48 and output it.",
     "input": "",
-    "output": "let arr = [48]\nprint arr",
+    "output": "let arr: list = [48]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13578,7 +13578,7 @@
   {
     "instruction": "Make a list with one element: 59, then print it.",
     "input": "",
-    "output": "let nums = [59]\nprint nums",
+    "output": "let nums: list = [59]\nprint nums",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13586,7 +13586,7 @@
   {
     "instruction": "Initialize a list holding the number 6 and print it.",
     "input": "",
-    "output": "let collection = [6]\nprint collection",
+    "output": "let collection: list = [6]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13594,7 +13594,7 @@
   {
     "instruction": "Make a list with one element: 17, then print it.",
     "input": "",
-    "output": "let list_a = [17]\nprint list_a",
+    "output": "let list_a: list = [17]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13602,7 +13602,7 @@
   {
     "instruction": "Create an array containing 35 and print the result.",
     "input": "",
-    "output": "let nums = [35]\nprint nums",
+    "output": "let nums: list = [35]\nprint nums",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13610,7 +13610,7 @@
   {
     "instruction": "Create a list with the value 16 and print it.",
     "input": "",
-    "output": "let collection = [16]\nprint collection",
+    "output": "let collection: list = [16]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13618,7 +13618,7 @@
   {
     "instruction": "Create a single-element list with 40 and output it.",
     "input": "",
-    "output": "let data = [40]\nprint data",
+    "output": "let data: list = [40]\nprint data",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13626,7 +13626,7 @@
   {
     "instruction": "Define a list holding 83 and display it.",
     "input": "",
-    "output": "let collection = [83]\nprint collection",
+    "output": "let collection: list = [83]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13634,7 +13634,7 @@
   {
     "instruction": "Build a list containing just 32 and print it.",
     "input": "",
-    "output": "let my_list = [32]\nprint my_list",
+    "output": "let my_list: list = [32]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13642,7 +13642,7 @@
   {
     "instruction": "Set up a list with 36 as its only element and print it.",
     "input": "",
-    "output": "let list_a = [36]\nprint list_a",
+    "output": "let list_a: list = [36]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13650,7 +13650,7 @@
   {
     "instruction": "Store 68 in a list and print the list.",
     "input": "",
-    "output": "let arr = [68]\nprint arr",
+    "output": "let arr: list = [68]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13658,7 +13658,7 @@
   {
     "instruction": "Define a list holding 97 and display it.",
     "input": "",
-    "output": "let list_a = [97]\nprint list_a",
+    "output": "let list_a: list = [97]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13666,7 +13666,7 @@
   {
     "instruction": "Initialize a list holding the number 19 and print it.",
     "input": "",
-    "output": "let nums = [19]\nprint nums",
+    "output": "let nums: list = [19]\nprint nums",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13674,7 +13674,7 @@
   {
     "instruction": "Define a list holding 67 and display it.",
     "input": "",
-    "output": "let data = [67]\nprint data",
+    "output": "let data: list = [67]\nprint data",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13682,7 +13682,7 @@
   {
     "instruction": "Store 99 in a list and print the list.",
     "input": "",
-    "output": "let elements = [99]\nprint elements",
+    "output": "let elements: list = [99]\nprint elements",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13690,7 +13690,7 @@
   {
     "instruction": "Make a list with one element: 50, then print it.",
     "input": "",
-    "output": "let values = [50]\nprint values",
+    "output": "let values: list = [50]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13698,7 +13698,7 @@
   {
     "instruction": "Create an array containing 8 and print the result.",
     "input": "",
-    "output": "let data = [8]\nprint data",
+    "output": "let data: list = [8]\nprint data",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13706,7 +13706,7 @@
   {
     "instruction": "Build a list containing just 92 and print it.",
     "input": "",
-    "output": "let my_list = [92]\nprint my_list",
+    "output": "let my_list: list = [92]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13714,7 +13714,7 @@
   {
     "instruction": "Store 24 in a list and print the list.",
     "input": "",
-    "output": "let list_a = [24]\nprint list_a",
+    "output": "let list_a: list = [24]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13722,7 +13722,7 @@
   {
     "instruction": "Define a list holding 63 and display it.",
     "input": "",
-    "output": "let collection = [63]\nprint collection",
+    "output": "let collection: list = [63]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13730,7 +13730,7 @@
   {
     "instruction": "Store 70 in a list and print the list.",
     "input": "",
-    "output": "let data = [70]\nprint data",
+    "output": "let data: list = [70]\nprint data",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13738,7 +13738,7 @@
   {
     "instruction": "Define a list holding 13 and display it.",
     "input": "",
-    "output": "let values = [13]\nprint values",
+    "output": "let values: list = [13]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13746,7 +13746,7 @@
   {
     "instruction": "Create an array containing 4 and print the result.",
     "input": "",
-    "output": "let values = [4]\nprint values",
+    "output": "let values: list = [4]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13754,7 +13754,7 @@
   {
     "instruction": "Set up a list with 75 as its only element and print it.",
     "input": "",
-    "output": "let items = [75]\nprint items",
+    "output": "let items: list = [75]\nprint items",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13762,7 +13762,7 @@
   {
     "instruction": "Build a list containing just 66 and print it.",
     "input": "",
-    "output": "let arr = [66]\nprint arr",
+    "output": "let arr: list = [66]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13770,7 +13770,7 @@
   {
     "instruction": "Declare a list containing 84 and output it.",
     "input": "",
-    "output": "let collection = [84]\nprint collection",
+    "output": "let collection: list = [84]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13778,7 +13778,7 @@
   {
     "instruction": "Make a list with one element: 38, then print it.",
     "input": "",
-    "output": "let my_list = [38]\nprint my_list",
+    "output": "let my_list: list = [38]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13786,7 +13786,7 @@
   {
     "instruction": "Create an array containing 73 and print the result.",
     "input": "",
-    "output": "let list_a = [73]\nprint list_a",
+    "output": "let list_a: list = [73]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13794,7 +13794,7 @@
   {
     "instruction": "Create a single-element list with 2 and output it.",
     "input": "",
-    "output": "let my_list = [2]\nprint my_list",
+    "output": "let my_list: list = [2]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13802,7 +13802,7 @@
   {
     "instruction": "Declare a list containing 85 and output it.",
     "input": "",
-    "output": "let values = [85]\nprint values",
+    "output": "let values: list = [85]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13810,7 +13810,7 @@
   {
     "instruction": "Create a single-element list with 56 and output it.",
     "input": "",
-    "output": "let collection = [56]\nprint collection",
+    "output": "let collection: list = [56]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13818,7 +13818,7 @@
   {
     "instruction": "Make a list with one element: 69, then print it.",
     "input": "",
-    "output": "let elements = [69]\nprint elements",
+    "output": "let elements: list = [69]\nprint elements",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13826,7 +13826,7 @@
   {
     "instruction": "Make a list with one element: 64, then print it.",
     "input": "",
-    "output": "let arr = [64]\nprint arr",
+    "output": "let arr: list = [64]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13834,7 +13834,7 @@
   {
     "instruction": "Create an array containing 9 and print the result.",
     "input": "",
-    "output": "let my_list = [9]\nprint my_list",
+    "output": "let my_list: list = [9]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13842,7 +13842,7 @@
   {
     "instruction": "Make a list with one element: 89, then print it.",
     "input": "",
-    "output": "let values = [89]\nprint values",
+    "output": "let values: list = [89]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13850,7 +13850,7 @@
   {
     "instruction": "Declare a list containing 15 and output it.",
     "input": "",
-    "output": "let elements = [15]\nprint elements",
+    "output": "let elements: list = [15]\nprint elements",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13858,7 +13858,7 @@
   {
     "instruction": "Make a list with one element: 12, then print it.",
     "input": "",
-    "output": "let values = [12]\nprint values",
+    "output": "let values: list = [12]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13866,7 +13866,7 @@
   {
     "instruction": "Define a list holding 55 and display it.",
     "input": "",
-    "output": "let values = [55]\nprint values",
+    "output": "let values: list = [55]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13874,7 +13874,7 @@
   {
     "instruction": "Store 44 in a list and print the list.",
     "input": "",
-    "output": "let arr = [44]\nprint arr",
+    "output": "let arr: list = [44]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13882,7 +13882,7 @@
   {
     "instruction": "Create an array containing 29 and print the result.",
     "input": "",
-    "output": "let list_a = [29]\nprint list_a",
+    "output": "let list_a: list = [29]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13890,7 +13890,7 @@
   {
     "instruction": "Build a list containing just 90 and print it.",
     "input": "",
-    "output": "let collection = [90]\nprint collection",
+    "output": "let collection: list = [90]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13898,7 +13898,7 @@
   {
     "instruction": "Set up a list with 79 as its only element and print it.",
     "input": "",
-    "output": "let nums = [79]\nprint nums",
+    "output": "let nums: list = [79]\nprint nums",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13906,7 +13906,7 @@
   {
     "instruction": "Create an array containing 1 and print the result.",
     "input": "",
-    "output": "let arr = [1]\nprint arr",
+    "output": "let arr: list = [1]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13914,7 +13914,7 @@
   {
     "instruction": "Store 96 in a list and print the list.",
     "input": "",
-    "output": "let elements = [96]\nprint elements",
+    "output": "let elements: list = [96]\nprint elements",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13922,7 +13922,7 @@
   {
     "instruction": "Build a list containing just 77 and print it.",
     "input": "",
-    "output": "let items = [77]\nprint items",
+    "output": "let items: list = [77]\nprint items",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13930,7 +13930,7 @@
   {
     "instruction": "Build a list containing just 33 and print it.",
     "input": "",
-    "output": "let arr = [33]\nprint arr",
+    "output": "let arr: list = [33]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13938,7 +13938,7 @@
   {
     "instruction": "Make a list with one element: 11, then print it.",
     "input": "",
-    "output": "let arr = [11]\nprint arr",
+    "output": "let arr: list = [11]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13946,7 +13946,7 @@
   {
     "instruction": "Set up a list with 20 as its only element and print it.",
     "input": "",
-    "output": "let list_a = [20]\nprint list_a",
+    "output": "let list_a: list = [20]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13954,7 +13954,7 @@
   {
     "instruction": "Create a list with the value 54 and print it.",
     "input": "",
-    "output": "let values = [54]\nprint values",
+    "output": "let values: list = [54]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13962,7 +13962,7 @@
   {
     "instruction": "Initialize a list holding the number 3 and print it.",
     "input": "",
-    "output": "let my_list = [3]\nprint my_list",
+    "output": "let my_list: list = [3]\nprint my_list",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13970,7 +13970,7 @@
   {
     "instruction": "Create an array containing 82 and print the result.",
     "input": "",
-    "output": "let collection = [82]\nprint collection",
+    "output": "let collection: list = [82]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13978,7 +13978,7 @@
   {
     "instruction": "Create a single-element list with 22 and output it.",
     "input": "",
-    "output": "let list_a = [22]\nprint list_a",
+    "output": "let list_a: list = [22]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13986,7 +13986,7 @@
   {
     "instruction": "Create an array containing 14 and print the result.",
     "input": "",
-    "output": "let data = [14]\nprint data",
+    "output": "let data: list = [14]\nprint data",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -13994,7 +13994,7 @@
   {
     "instruction": "Make a list with one element: 58, then print it.",
     "input": "",
-    "output": "let arr = [58]\nprint arr",
+    "output": "let arr: list = [58]\nprint arr",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -14002,7 +14002,7 @@
   {
     "instruction": "Make a list with one element: 21, then print it.",
     "input": "",
-    "output": "let list_a = [21]\nprint list_a",
+    "output": "let list_a: list = [21]\nprint list_a",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -14010,7 +14010,7 @@
   {
     "instruction": "Create a single-element list with 30 and output it.",
     "input": "",
-    "output": "let values = [30]\nprint values",
+    "output": "let values: list = [30]\nprint values",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true
@@ -14018,7 +14018,7 @@
   {
     "instruction": "Build a list containing just 88 and print it.",
     "input": "",
-    "output": "let collection = [88]\nprint collection",
+    "output": "let collection: list = [88]\nprint collection",
     "category": "data_structures",
     "difficulty": "intermediate",
     "verified": true

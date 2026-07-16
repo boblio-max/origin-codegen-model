@@ -109,7 +109,7 @@ for epoch in range(epochs):
         loss = outputs.loss
         loss.backward()
         optimizer.step()
-        optimizer.zero_grad()
+        optimizer.zero_grad()   
         total_loss += loss.item()
     print(
         f"Epoch {epoch+1} loss:",

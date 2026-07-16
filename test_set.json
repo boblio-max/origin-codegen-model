@@ -1,0 +1,82 @@
+[
+  {
+    "instruction": "Print the text Hello, World!",
+    "expected_output": "Hello, World!"
+  },
+  {
+    "instruction": "Print the number 42.",
+    "expected_output": "42"
+  },
+  {
+    "instruction": "Add 17 and 25, then print the result.",
+    "expected_output": "42"
+  },
+  {
+    "instruction": "Subtract 15 from 100 and print the result.",
+    "expected_output": "85"
+  },
+  {
+    "instruction": "Multiply 9 by 8 and print the answer.",
+    "expected_output": "72"
+  },
+  {
+    "instruction": "Divide 144 by 12 and print the result.",
+    "expected_output": "12"
+  },
+  {
+    "instruction": "Print the remainder when 17 is divided by 5.",
+    "expected_output": "2"
+  },
+  {
+    "instruction": "Raise 2 to the power of 10 and print it.",
+    "expected_output": "1024"
+  },
+  {
+    "instruction": "Store 15 in a variable named x and print it.",
+    "expected_output": "15"
+  },
+  {
+    "instruction": "Create variables a = 5 and b = 7, then print their sum.",
+    "expected_output": "12"
+  },
+  {
+    "instruction": "Print every number from 1 through 5.",
+    "expected_output": "1\n2\n3\n4\n5"
+  },
+  {
+    "instruction": "Print every even number from 2 through 10.",
+    "expected_output": "2\n4\n6\n8\n10"
+  },
+  {
+    "instruction": "Print the numbers from 5 down to 1.",
+    "expected_output": "5\n4\n3\n2\n1"
+  },
+  {
+    "instruction": "Print the word Hi three times.",
+    "expected_output": "Hi\nHi\nHi"
+  },
+  {
+    "instruction": "Print the numbers 10, 20, and 30, each on a new line.",
+    "expected_output": "10\n20\n30"
+  },
+  {
+    "instruction": "Create a list containing 1, 2, 3, and print the first element.",
+    "expected_output": "1"
+  },
+  {
+    "instruction": "Create a list containing 5, 10, and 15, then print the last element.",
+    "expected_output": "15"
+  },
+  {
+    "instruction": "Create a variable score equal to 95. If it is greater than 90, print Excellent.",
+    "expected_output": "Excellent"
+  },
+  {
+    "instruction": "Create a variable temperature equal to 20. If it is below 32 print Cold, otherwise print Warm.",
+    "expected_output": "Cold"
+  },
+  {
+    "instruction": "Create a variable x equal to 3. If x equals 5 print Yes, otherwise print No.",
+    "expected_output": "No"
+  }
+]

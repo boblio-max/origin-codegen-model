@@ -119,3 +119,4 @@ model.save_pretrained("origin_codegen_model")
 tokenizer.save_pretrained("origin_codegen_model")
 with open("training_logs.json", "w") as f:
     json.dump(trainer.state.log_history, f, indent=4)
+    

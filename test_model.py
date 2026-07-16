@@ -1,6 +1,6 @@
 import json
 import torch
-
+import subprocess
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 
@@ -61,7 +61,17 @@ for example in dataset:
     print("Model Output:", result.split("### Output\n")[1].strip())
     print("="*50)
     
-    if example["output"].strip() == result.split("### Output\n")[1].strip():
+    with open("origintests.or", "w") as f:
+        f.write(result.split("### Output\n")[1].strip())
+    
+    # pip install origin-or
+    result_from_origin = subprocess.run(
+        ["origin", "i","origintests.or"],
+        capture_output=True,
+        text=True
+    )
+    
+    if example["output"].strip() == result_from_origin.stdout.strip():
         correct_count += 1
 
 print(f"Correctness probability: {correct_count}/{len(dataset)}")

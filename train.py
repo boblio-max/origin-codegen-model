@@ -5,6 +5,7 @@ from torch.utils.data import Dataset, DataLoader
 from transformers import AutoTokenizer,AutoModelForCausalLM
 from peft import LoraConfig, get_peft_model
 
+logs = {}
 def format_example(example):
 
     return (
@@ -114,9 +115,13 @@ for epoch in range(epochs):
         f"Epoch {epoch+1} loss:",
         total_loss / len(train_loader)
     )
+    logs.append({
+        "epoch": epoch + 1,
+        "loss": total_loss / len(train_loader)
+    })
 
 model.save_pretrained("origin_codegen_model")
 tokenizer.save_pretrained("origin_codegen_model")
 with open("training_logs.json", "w") as f:
-    json.dump(trainer.state.log_history, f, indent=4)
+    json.dump(logs)
     

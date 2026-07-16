@@ -115,12 +115,10 @@ for epoch in range(epochs):
         f"Epoch {epoch+1} loss:",
         total_loss / len(train_loader)
     )
-    ep = ("epoch", epoch + 1)
-    ls = ("loss", total_loss / len(train_loader))
-    logs[ep] = ls
+    logs[epoch + 1] = total_loss / len(train_loader)
 
 model.save_pretrained("origin_codegen_model")
 tokenizer.save_pretrained("origin_codegen_model")
 with open("training_logs.json", "w") as f:
-    json.dump(logs)
+    json.dump(logs, f, indent=2)
     

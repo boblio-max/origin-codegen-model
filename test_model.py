@@ -16,15 +16,15 @@ model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
 model.to(device)
 model.eval()
 
-correct_count = 0
-
 with open("test_set.json", "r", encoding="utf-8") as f:
     dataset = json.load(f)
+
+num_iterations = 10
 sum_prob = 0.0
-num = len(dataset)
-for i in range(len(dataset)):
-    dataset = random.shuffle(dataset)
-    for example in tqdm(dataset, desc="Testing"):
+for i in range(num_iterations):
+    correct_count = 0
+    random.shuffle(dataset)
+    for example in tqdm(dataset, desc=f"Iteration {i+1}"):
         prompt = f"""
         ### Instruction
         {example["instruction"]}
@@ -42,7 +42,8 @@ for i in range(len(dataset)):
             )
 
         result = tokenizer.decode(outputs[0], skip_special_tokens=True)
-        generated_code = result.split("### Response\n")[1].strip()
+        parts = result.split("### Response\n")
+        generated_code = parts[1].strip() if len(parts) > 1 else result.strip()
 
         with open("origintest.or", "w", encoding="utf-8") as f:
             f.write(generated_code)
@@ -60,7 +61,7 @@ for i in range(len(dataset)):
             correct_count += 1
 
     probability = (correct_count / len(dataset)) * 100
-    print(f"Accuracy{i}: {probability:.2f}% ({correct_count}/{len(dataset)})")
+    print(f"Iteration {i+1} Accuracy: {probability:.2f}% ({correct_count}/{len(dataset)})")
     sum_prob += probability
 
-print(f"Final Accuracy(Sum of Probabilities): {sum_prob/num:.2f}%")
+print(f"Average Accuracy: {sum_prob/num_iterations:.2f}%")

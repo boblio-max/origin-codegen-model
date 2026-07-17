@@ -3,6 +3,7 @@ import torch
 import subprocess
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
+from tqdm import tqdm
 
 correct_count = 0
 
@@ -12,7 +13,7 @@ def format_example(example):
         "### Instruction\n"
         + example["instruction"]
         + "\n\n### Output\n"
-        + example["output"]
+        + example["expected_output"]
     )
     
 with open("test_set.json","r",encoding="utf-8") as f:
@@ -35,7 +36,7 @@ model = PeftModel.from_pretrained(
 model.to(device)
 model.eval()
 
-for example in dataset:
+for example in tqdm(dataset):
     prompt = format_example(example)
     inputs = tokenizer(
         prompt,
@@ -57,7 +58,7 @@ for example in dataset:
     )
 
     print("Instruction:", example["instruction"])
-    print("Expected Output:", example["output"])
+    print("Expected Output:", example["expected_output"])
     print("Model Output:", result.split("### Output\n")[1].strip())
     print("="*50)
     
@@ -71,7 +72,7 @@ for example in dataset:
         text=True
     )
     
-    if example["output"].strip() == result_from_origin.stdout.strip():
+    if example["expected_output"].strip() == result_from_origin.stdout.strip():
         correct_count += 1
 
 print(f"Correctness probability: {correct_count}/{len(dataset)}")

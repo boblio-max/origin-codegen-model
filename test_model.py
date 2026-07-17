@@ -5,45 +5,31 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 from tqdm import tqdm
 
-correct_count = 0
-
-def format_example(example):
-
-    return (
-        "### Instruction\n"
-        + example["instruction"]
-        + "\n\n### Output\n"
-        + example["expected_output"]
-    )
-    
-with open("test_set.json","r",encoding="utf-8") as f:
-    dataset = json.load(f)
-    
 MODEL_NAME = "Qwen/Qwen2.5-1.5B"
 ADAPTER_PATH = "origin_codegen_model"
 device = "cuda"
-tokenizer = AutoTokenizer.from_pretrained(
-    ADAPTER_PATH
-)
-base_model = AutoModelForCausalLM.from_pretrained(
-    MODEL_NAME,
-    torch_dtype=torch.float16
-)
-model = PeftModel.from_pretrained(
-    base_model,
-    ADAPTER_PATH
-)
+
+tokenizer = AutoTokenizer.from_pretrained(ADAPTER_PATH)
+base_model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.float16)
+model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
 model.to(device)
 model.eval()
 
-for example in tqdm(dataset):
-    inputs = tokenizer(
-        example["instruction"],
-        return_tensors="pt"
-    ).to(device)
+correct_count = 0
+
+with open("test_set.json", "r", encoding="utf-8") as f:
+    dataset = json.load(f)
+
+for example in tqdm(dataset, desc="Testing"):
+    prompt = f"""
+    ### Instruction
+    {example["instruction"]}
+
+    ### Response
+    """
+    inputs = tokenizer(prompt, return_tensors="pt").to(device)
 
     with torch.no_grad():
-
         outputs = model.generate(
             **inputs,
             max_new_tokens=100,
@@ -51,30 +37,23 @@ for example in tqdm(dataset):
             do_sample=True
         )
 
-    result = tokenizer.decode(
-        outputs[0],
-        skip_special_tokens=True
+    result = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    generated_code = result.split("### Response\n")[1].strip()
+
+    with open("origintest.or", "w", encoding="utf-8") as f:
+        f.write(generated_code)
+
+    proc = subprocess.run(
+        ["origin", "i", "origintest.or"],
+        capture_output=True,
+        text=True
     )
 
-    print(result.split("### Output\n")[1].strip())
-    
-    # print("Instruction:", example["instruction"])
-    # print("Expected Output:", example["expected_output"])
-    # print("Model Output:", result.split("### Output\n")[1].strip())
-    # print("="*50)
-    
-    # with open("origintests.or", "w") as f:
-    #     f.write(result.split("### Output\n")[1].strip())
-    
-    # # pip install origin-or
-    # result_from_origin = subprocess.run(
-    #     ["origin", "i","origintests.or"],
-    #     capture_output=True,
-    #     text=True
-    # )
-    # print(result_from_origin.stdout)
-    # if example["expected_output"] == result_from_origin.stdout.strip():
-    #     correct_count += 1
+    actual_output = proc.stdout.strip()
+    expected_output = example["expected_output"].strip()
+
+    if actual_output == expected_output:
+        correct_count += 1
 
 probability = (correct_count / len(dataset)) * 100
 print(f"Correctness probability: {probability:.2f}% ({correct_count}/{len(dataset)})")

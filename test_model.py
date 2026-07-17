@@ -37,9 +37,8 @@ model.to(device)
 model.eval()
 
 for example in tqdm(dataset):
-    prompt = format_example(example)
     inputs = tokenizer(
-        prompt,
+        example["instruction"],
         return_tensors="pt"
     ).to(device)
 

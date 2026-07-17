@@ -57,10 +57,12 @@ for example in tqdm(dataset):
         skip_special_tokens=True
     )
 
-    print("Instruction:", example["instruction"])
-    print("Expected Output:", example["expected_output"])
-    print("Model Output:", result.split("### Output\n")[1].strip())
-    print("="*50)
+    result.split("### Output\n")[1].strip()
+    
+    # print("Instruction:", example["instruction"])
+    # print("Expected Output:", example["expected_output"])
+    # print("Model Output:", result.split("### Output\n")[1].strip())
+    # print("="*50)
     
     with open("origintests.or", "w") as f:
         f.write(result.split("### Output\n")[1].strip())
@@ -71,8 +73,9 @@ for example in tqdm(dataset):
         capture_output=True,
         text=True
     )
-    if example["expected_output"]== result_from_origin.stdout.strip():
-        correct_count += 1
+    print(result_from_origin.stdout)
+    # if example["expected_output"] == result_from_origin.stdout.strip():
+    #     correct_count += 1
 
 probability = (correct_count / len(dataset)) * 100
 print(f"Correctness probability: {probability:.2f}% ({correct_count}/{len(dataset)})")

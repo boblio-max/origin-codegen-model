@@ -71,8 +71,8 @@ for example in tqdm(dataset):
         capture_output=True,
         text=True
     )
-    
-    if example["expected_output"].strip() == result_from_origin.stdout.strip():
+    if example["expected_output"]== result_from_origin.stdout.strip():
         correct_count += 1
 
-print(f"Correctness probability: {correct_count}/{len(dataset)}")
+probability = (correct_count / len(dataset)) * 100
+print(f"Correctness probability: {probability:.2f}% ({correct_count}/{len(dataset)})")

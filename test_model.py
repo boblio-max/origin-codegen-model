@@ -4,7 +4,7 @@ import subprocess
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 from tqdm import tqdm
-from fractions import Fraction
+import random
 
 MODEL_NAME = "Qwen/Qwen2.5-1.5B"
 ADAPTER_PATH = "origin_codegen_model"
@@ -23,6 +23,7 @@ with open("test_set.json", "r", encoding="utf-8") as f:
 sum_prob = 0.0
 num = len(dataset)
 for i in range(len(dataset)):
+    dataset = random.shuffle(dataset)
     for example in tqdm(dataset, desc="Testing"):
         prompt = f"""
         ### Instruction

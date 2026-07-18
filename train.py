@@ -7,7 +7,7 @@ from peft import LoraConfig, get_peft_model
 
 # Configuration
 DATASET_PATH = "origin_instruction_tuning_dataset_v3.json"
-MODEL_NAME = "Qwen/Qwen2.5-1.5B"
+MODEL_NAME = "Qwen/Qwen3-1.7B"
 OUTPUT_DIR = "./origin_codegen_model"
 MAX_SEQ_LENGTH = 512
 TRAIN_BATCH_SIZE = 2

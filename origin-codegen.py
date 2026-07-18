@@ -3,7 +3,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 
-MODEL_NAME = "Qwen/Qwen2.5-1.5B"
+MODEL_NAME = "Qwen/Qwen3-1.7B"
 ADAPTER_PATH = "origin_codegen_model"
 device = "cuda"
 tokenizer = AutoTokenizer.from_pretrained(

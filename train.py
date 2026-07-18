@@ -1,44 +1,47 @@
 import json
 import random
 import torch
-from torch.utils.data import Dataset, DataLoader
-from transformers import AutoTokenizer,AutoModelForCausalLM
+from torch.utils.data import Dataset
+from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments, Trainer
 from peft import LoraConfig, get_peft_model
 
-logs = {}
-def format_example(example):
+# Configuration
+DATASET_PATH = "origin_instruction_tuning_dataset_v3.json"
+MODEL_NAME = "Qwen/Qwen2.5-1.5B"
+OUTPUT_DIR = "./origin_codegen_model"
+MAX_SEQ_LENGTH = 512
+TRAIN_BATCH_SIZE = 2
+NUM_EPOCHS = 5
+LEARNING_RATE = 2e-4
 
+# 1. Data Loading and Preprocessing
+def format_example(example):
+    instruction = example["instruction"]
+    output = example["output"]
     return (
-        "### Instruction\n"
-        + example["instruction"]
-        + "\n\n### Response\n"
-        + example["output"]
+        f"### Instruction\n{instruction}\n\n### Response\n{output}"
     )
-    
-with open("origin_instruction_tuning_dataset_v3.json","r",encoding="utf-8") as f:
+
+with open(DATASET_PATH, "r", encoding="utf-8") as f:
     dataset = json.load(f)
 
-print(len(dataset))
-print(dataset[0])
+print(f"Total examples loaded: {len(dataset)}")
 
 random.shuffle(dataset)
 
-train_set = dataset[:1800]
-test_set = dataset[1800:]
+# Split dataset (using 10499 examples, so 10000 train, 499 test)
+train_data = dataset[:10000]
+test_data = dataset[10000:]
 
-print(len(train_set))
-print(len(test_set))
+print(f"Training examples: {len(train_data)}")
+print(f"Test examples: {len(test_data)}")
 
-MODEL_NAME = "Qwen/Qwen2.5-1.5B"
-
-tokenizer = AutoTokenizer.from_pretrained( MODEL_NAME)
+# 2. Model and Tokenizer Initialization
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
-    
-model = AutoModelForCausalLM.from_pretrained( MODEL_NAME,dtype=torch.float16)
-device = "cuda"
-model.to(device)
-print(model.device)
+
+model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.float16)
 
 lora_config = LoraConfig(
     r=8,
@@ -52,73 +55,96 @@ lora_config = LoraConfig(
     task_type="CAUSAL_LM"
 )
 
-model = get_peft_model(
-    model,
-    lora_config
-)
-
+model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 
+# 3. Custom Dataset with Label Masking
 class OriginDataset(Dataset):
-    def __init__(self,data):
-        self.data=data
+    def __init__(self, data, tokenizer, max_seq_length):
+        self.data = data
+        self.tokenizer = tokenizer
+        self.max_seq_length = max_seq_length
 
     def __len__(self):
         return len(self.data)
 
-    def __getitem__(self,index):
-        text=format_example(self.data[index])
+    def __getitem__(self, index):
+        example = self.data[index]
+        formatted_text = format_example(example)
 
-        tokens=tokenizer(
-            text,
-            max_length=512,
+        # Tokenize the full text
+        full_tokens = self.tokenizer(
+            formatted_text,
+            max_length=self.max_seq_length,
             truncation=True,
             padding="max_length",
             return_tensors="pt"
         )
+        input_ids = full_tokens["input_ids"].squeeze(0)
+        attention_mask = full_tokens["attention_mask"].squeeze(0)
+
+        # Create labels and mask the instruction part
+        labels = input_ids.clone()
+
+        # Find the start of the response to mask the instruction
+        instruction_text = f"### Instruction\n{example['instruction']}\n\n### Response\n"
+        instruction_tokens = self.tokenizer(
+            instruction_text,
+            max_length=self.max_seq_length,
+            truncation=True,
+            return_tensors="pt",
+            add_special_tokens=False # Important: do not add special tokens here
+        )
+        # Get the length of the instruction part, including the prompt for the response
+        instruction_len = instruction_tokens["input_ids"].size(1)
+
+        # Mask the instruction part by setting labels to -100
+        labels[:instruction_len] = -100
 
         return {
-            "input_ids":tokens["input_ids"].squeeze(0),
-            "attention_mask":tokens["attention_mask"].squeeze(0),
-            "labels":tokens["input_ids"].squeeze(0)
+            "input_ids": input_ids,
+            "attention_mask": attention_mask,
+            "labels": labels
         }
 
-training_data = OriginDataset(train_set)
+# Initialize datasets
+training_dataset = OriginDataset(train_data, tokenizer, MAX_SEQ_LENGTH)
+test_dataset = OriginDataset(test_data, tokenizer, MAX_SEQ_LENGTH)
 
-train_loader = DataLoader(
-    training_data,
-    batch_size=2,
-    shuffle=True
+# 4. Training Arguments and Trainer
+training_args = TrainingArguments(
+    output_dir=OUTPUT_DIR,
+    per_device_train_batch_size=TRAIN_BATCH_SIZE,
+    gradient_accumulation_steps=2,
+    num_train_epochs=NUM_EPOCHS,
+    learning_rate=LEARNING_RATE,
+    logging_dir="./logs",
+    logging_steps=10,
+    save_steps=500,
+    save_total_limit=2,
+
+    load_best_model_at_end=True,
+
+
+    report_to="none", # Disable reporting to services like W&B
 )
 
-optimizer = torch.optim.AdamW(
-    model.parameters(),
-    lr=2e-4
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=training_dataset,
+    eval_dataset=test_dataset, # Add evaluation dataset
+    tokenizer=tokenizer,
 )
 
-epochs = 3
-model.train()
-for epoch in range(epochs):
-    total_loss = 0
-    for batch in train_loader:
-        batch = {
-            key: value.to(device)
-            for key, value in batch.items()
-        }
-        outputs = model(**batch)
-        loss = outputs.loss
-        loss.backward()
-        optimizer.step()
-        optimizer.zero_grad()   
-        total_loss += loss.item()
-    print(
-        f"Epoch {epoch+1} loss:",
-        total_loss / len(train_loader)
-    )
-    logs[epoch + 1] = total_loss / len(train_loader)
+# 5. Start Training
+print("Starting training...")
+trainer.train()
 
-model.save_pretrained("origin_codegen_model")
-tokenizer.save_pretrained("origin_codegen_model")
-with open("training_logs.json", "w") as f:
-    json.dump(logs, f, indent=2)
-    
+# 6. Save Model and Logs
+model.save_pretrained(OUTPUT_DIR)
+tokenizer.save_pretrained(OUTPUT_DIR)
+
+# Trainer automatically saves logs, but we can also access them if needed
+# For simplicity, we'll rely on Trainer's logging to output_dir/runs
+print(f"Training complete. Model saved to {OUTPUT_DIR}")

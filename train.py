@@ -1,123 +1,92 @@
 import json
 import random
 import torch
-
-from torch.utils.data import Dataset
-from transformers import (
-    AutoTokenizer,
-    AutoModelForCausalLM,
-    TrainingArguments,
-    Trainer,
-)
+from torch.utils.data import Dataset, DataLoader
+from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import LoraConfig, get_peft_model
 
+logs = {}
 
-DATASET_PATH = "origin_instruction_tuning_dataset_v3.json"
-MODEL_NAME = "Qwen/Qwen3-1.7B"
-OUTPUT_DIR = "./origin_codegen_model"
-
-MAX_SEQ_LENGTH = 512
-TRAIN_BATCH_SIZE = 2
-GRADIENT_ACCUMULATION_STEPS = 2
-NUM_EPOCHS = 3
-LEARNING_RATE = 1e-4
-SEED = 42
-
-
-random.seed(SEED)
-torch.manual_seed(SEED)
-
-if torch.cuda.is_available():
-    torch.cuda.manual_seed_all(SEED)
+INSTRUCTION_HEADER = "### Instruction\n"
+RESPONSE_HEADER = "\n\n### Response\n"
 
 
 def format_example(example):
-    instruction = example["instruction"]
-    output = example["output"]
-
-    return (
-        f"### Instruction\n"
-        f"{instruction}\n\n"
-        f"### Response\n"
-        f"{output}"
-    )
+    prompt = INSTRUCTION_HEADER + example["instruction"] + RESPONSE_HEADER
+    full_text = prompt + example["output"]
+    return prompt, full_text
 
 
-with open(DATASET_PATH, "r", encoding="utf-8") as f:
+with open("origin_instruction_tuning_dataset_v3.json", "r", encoding="utf-8") as f:
     dataset = json.load(f)
-
-print(f"Total examples loaded: {len(dataset)}")
-
-if len(dataset) != 10499:
-    print(
-        f"WARNING: Expected 10499 examples, "
-        f"but found {len(dataset)}."
-    )
+print(len(dataset))
+print(dataset[0])
 
 random.shuffle(dataset)
+train_set = dataset[: int(len(dataset) * 0.9)]
+test_set = dataset[int(len(dataset) * 0.9):]
+print(len(train_set))
+print(len(test_set))
 
-train_data = dataset[:10000]
-test_data = dataset[10000:]
-
-print(f"Training examples: {len(train_data)}")
-print(f"Test examples: {len(test_data)}")
-
-
+MODEL_NAME = "Qwen/Qwen2.5-1.5B"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
 
-tokenizer.padding_side = "right"
+# bf16 is far more stable for training than raw fp16 without a GradScaler.
+# Falls back to fp32 if bf16 isn't supported by the GPU.
+use_bf16 = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+model_dtype = torch.bfloat16 if use_bf16 else torch.float32
+print(f"Loading model in {model_dtype}")
+
+model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, dtype=model_dtype)
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model.to(device)
+print(model.device)
+
+lora_config = LoraConfig(
+    r=8,
+    lora_alpha=16,
+    target_modules=["q_proj", "v_proj"],
+    lora_dropout=0.05,
+    bias="none",
+    task_type="CAUSAL_LM",
+)
+model = get_peft_model(model, lora_config)
+model.print_trainable_parameters()
 
 
 class OriginDataset(Dataset):
-
-    def __init__(self, data, tokenizer, max_seq_length):
+    def __init__(self, data):
         self.data = data
-        self.tokenizer = tokenizer
-        self.max_seq_length = max_seq_length
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, index):
-        example = self.data[index]
+        prompt, full_text = format_example(self.data[index])
 
-        formatted_text = format_example(example)
-
-        full_tokens = self.tokenizer(
-            formatted_text,
-            max_length=self.max_seq_length,
+        tokens = tokenizer(
+            full_text,
+            max_length=512,
             truncation=True,
             padding="max_length",
             return_tensors="pt",
-            add_special_tokens=True,
         )
+        input_ids = tokens["input_ids"].squeeze(0)
+        attention_mask = tokens["attention_mask"].squeeze(0)
 
-        input_ids = full_tokens["input_ids"].squeeze(0)
-        attention_mask = full_tokens["attention_mask"].squeeze(0)
+        # Number of tokens belonging to the prompt (instruction + header),
+        # used to mask them out of the loss so we only train on the response.
+        prompt_len = len(
+            tokenizer(prompt, truncation=True, max_length=512)["input_ids"]
+        )
 
         labels = input_ids.clone()
-
-        instruction_text = (
-            f"### Instruction\n"
-            f"{example['instruction']}\n\n"
-            f"### Response\n"
-        )
-
-        instruction_tokens = self.tokenizer(
-            instruction_text,
-            max_length=self.max_seq_length,
-            truncation=True,
-            return_tensors="pt",
-            add_special_tokens=True,
-        )
-
-        instruction_len = instruction_tokens["input_ids"].size(1)
-
-        labels[:instruction_len] = -100
+        # Mask padding tokens
         labels[attention_mask == 0] = -100
+        # Mask prompt tokens (instruction + header) so loss is response-only
+        labels[:prompt_len] = -100
 
         return {
             "input_ids": input_ids,
@@ -126,124 +95,58 @@ class OriginDataset(Dataset):
         }
 
 
-training_dataset = OriginDataset(
-    train_data,
-    tokenizer,
-    MAX_SEQ_LENGTH,
-)
-
-test_dataset = OriginDataset(
-    test_data,
-    tokenizer,
-    MAX_SEQ_LENGTH,
-)
-
-
-model = AutoModelForCausalLM.from_pretrained(
-    MODEL_NAME,
-    torch_dtype=torch.float16,
-)
-
-model.config.use_cache = False
+def evaluate(model, loader):
+    model.eval()
+    total_loss = 0.0
+    with torch.no_grad():
+        for batch in loader:
+            batch = {k: v.to(device) for k, v in batch.items()}
+            outputs = model(**batch)
+            total_loss += outputs.loss.item()
+    model.train()
+    return total_loss / max(len(loader), 1)
 
 
-lora_config = LoraConfig(
-    r=16,
-    lora_alpha=32,
-    target_modules=[
-        "q_proj",
-        "k_proj",
-        "v_proj",
-        "o_proj",
-        "gate_proj",
-        "up_proj",
-        "down_proj",
-    ],
-    lora_dropout=0.05,
-    bias="none",
-    task_type="CAUSAL_LM",
-)
+training_data = OriginDataset(train_set)
+train_loader = DataLoader(training_data, batch_size=2, shuffle=True)
 
-model = get_peft_model(
-    model,
-    lora_config,
-)
+eval_data = OriginDataset(test_set)
+eval_loader = DataLoader(eval_data, batch_size=2, shuffle=False)
 
-model.print_trainable_parameters()
+optimizer = torch.optim.AdamW(model.parameters(), lr=2e-4)
 
+GRAD_ACCUM_STEPS = 8  # effective batch size = 2 * 8 = 16
+epochs = 3
 
-training_args = TrainingArguments(
-    output_dir=OUTPUT_DIR,
-    per_device_train_batch_size=TRAIN_BATCH_SIZE,
-    gradient_accumulation_steps=GRADIENT_ACCUMULATION_STEPS,
-    per_device_eval_batch_size=TRAIN_BATCH_SIZE,
-    num_train_epochs=NUM_EPOCHS,
-    learning_rate=LEARNING_RATE,
-    lr_scheduler_type="cosine",
-    warmup_ratio=0.05,
-    max_grad_norm=1.0,
-    eval_strategy="steps",
-    eval_steps=250,
-    save_strategy="steps",
-    save_steps=250,
-    save_total_limit=2,
-    load_best_model_at_end=True,
-    metric_for_best_model="eval_loss",
-    greater_is_better=False,
-    logging_steps=10,
-    report_to="none",
-    fp16=True,
-    seed=SEED,
-    data_seed=SEED,
-    remove_unused_columns=False,
-)
+model.train()
+for epoch in range(epochs):
+    total_loss = 0.0
+    optimizer.zero_grad()
+    for step, batch in enumerate(train_loader):
+        batch = {k: v.to(device) for k, v in batch.items()}
+        outputs = model(**batch)
+        loss = outputs.loss / GRAD_ACCUM_STEPS
+        loss.backward()
 
+        if (step + 1) % GRAD_ACCUM_STEPS == 0:
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+            optimizer.step()
+            optimizer.zero_grad()
 
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=training_dataset,
-    eval_dataset=test_dataset,
-    tokenizer=tokenizer,
-)
+        total_loss += outputs.loss.item()
 
+    # Flush any remaining accumulated gradients at epoch end
+    if (step + 1) % GRAD_ACCUM_STEPS != 0:
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+        optimizer.step()
+        optimizer.zero_grad()
 
-print("=" * 60)
-print("STARTING ORIGIN CODEGEN TRAINING")
-print("=" * 60)
+    train_loss = total_loss / len(train_loader)
+    eval_loss = evaluate(model, eval_loader)
+    print(f"Epoch {epoch+1} train loss: {train_loss:.4f} | eval loss: {eval_loss:.4f}")
+    logs[epoch + 1] = {"train_loss": train_loss, "eval_loss": eval_loss}
 
-print(f"Model: {MODEL_NAME}")
-print(f"Training examples: {len(train_data)}")
-print(f"Evaluation examples: {len(test_data)}")
-print(f"Sequence length: {MAX_SEQ_LENGTH}")
-print(f"Batch size: {TRAIN_BATCH_SIZE}")
-print(f"Gradient accumulation: {GRADIENT_ACCUMULATION_STEPS}")
-print(
-    f"Effective batch size: "
-    f"{TRAIN_BATCH_SIZE * GRADIENT_ACCUMULATION_STEPS}"
-)
-print(f"Epochs: {NUM_EPOCHS}")
-print(f"Learning rate: {LEARNING_RATE}")
-print()
-
-trainer.train()
-
-
-print("=" * 60)
-print("FINAL EVALUATION")
-print("=" * 60)
-
-eval_results = trainer.evaluate()
-
-print(f"Final evaluation loss: {eval_results['eval_loss']}")
-
-
-print("Saving model...")
-
-model.save_pretrained(OUTPUT_DIR)
-tokenizer.save_pretrained(OUTPUT_DIR)
-
-print("=" * 60)
-print("TRAINING COMPLETE")
-print("=" * 60)
-print(f"Model saved to: {OUTPUT_DIR}")
+model.save_pretrained("origin_codegen_model")
+tokenizer.save_pretrained("origin_codegen_model")
+with open("training_logs.json", "w") as f:
+    json.dump(logs, f, indent=2)

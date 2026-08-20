@@ -10,17 +10,100 @@ logs = {}
 INSTRUCTION_HEADER = "### Instruction\n"
 RESPONSE_HEADER = "\n\n### Response\n"
 
+# ============================================================
+# CONFIG
+# ============================================================
+
+DATASET_PATH = "origin_instruction_tuning_dataset_v3.json"
+MODEL_NAME = "Qwen/Qwen3-1.7B"
+OUTPUT_DIR = "./origin_codegen_model"
+
+MAX_SEQ_LENGTH = 512
+
+TRAIN_BATCH_SIZE = 2
+GRADIENT_ACCUMULATION_STEPS = 2
+
+NUM_EPOCHS = 3
+LEARNING_RATE = 1e-4
+
+SEED = 42
+
+
+# ============================================================
+# REPRODUCIBILITY
+# ============================================================
+
+random.seed(SEED)
+torch.manual_seed(SEED)
+
+if torch.cuda.is_available():
+    torch.cuda.manual_seed_all(SEED)
+
+
+# ============================================================
+# DEVICE
+# ============================================================
+
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+
+print("=" * 60)
+print("DEVICE INFORMATION")
+print("=" * 60)
+print(f"Device: {DEVICE}")
+
+if torch.cuda.is_available():
+    print(f"GPU: {torch.cuda.get_device_name(0)}")
+    print(
+        f"CUDA memory: "
+        f"{torch.cuda.get_device_properties(0).total_memory / 1024**3:.2f} GB"
+    )
+
+print()
+
+
+# ============================================================
+# FORMAT DATASET
+# ============================================================
 
 def format_example(example):
-    prompt = INSTRUCTION_HEADER + example["instruction"] + RESPONSE_HEADER
-    full_text = prompt + example["output"]
+def format_example(example):
+    instruction = example["instruction"].strip()
+    output = example["output"].strip()
+
+    prompt = INSTRUCTION_HEADER + instruction + RESPONSE_HEADER
+    full_text = prompt + output
+
     return prompt, full_text
 
 
-with open("origin_instruction_tuning_dataset_v3.json", "r", encoding="utf-8") as f:
+def format_prompt(example):
+    instruction = example["instruction"].strip()
+
+    return INSTRUCTION_HEADER + instruction + RESPONSE_HEADER
+
+
+# ============================================================
+# LOAD DATASET
+# ============================================================
+
+with open(DATASET_PATH, "r", encoding="utf-8") as f:
     dataset = json.load(f)
-print(len(dataset))
-print(dataset[0])
+
+print("=" * 60)
+print("DATASET")
+print("=" * 60)
+
+print(f"Total examples loaded: {len(dataset)}")
+
+if len(dataset) != 10499:
+    print(
+        f"WARNING: Expected 10499 examples, "
+        f"but found {len(dataset)}."
+    )
+
+random.shuffle(dataset)
+train_set = dataset[: int(len(dataset) * 0.9)]
+test_set = dataset[int(len(dataset) * 0.9):]
 
 random.shuffle(dataset)
 train_set = dataset[: int(len(dataset) * 0.9)]
@@ -28,8 +111,32 @@ test_set = dataset[int(len(dataset) * 0.9):]
 print(len(train_set))
 print(len(test_set))
 
-MODEL_NAME = "Qwen/Qwen2.5-1.5B"
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+print(len(train_set))
+print(len(test_set))
+
+train_data = train_set
+eval_data = test_set
+
+print(f"Training examples: {len(train_data)}")
+print(f"Evaluation examples: {len(eval_data)}")
+print()
+
+
+# ============================================================
+# TOKENIZER
+# ============================================================
+
+print("=" * 60)
+print("LOADING TOKENIZER")
+print("=" * 60)
+
+tokenizer = AutoTokenizer.from_pretrained(
+    MODEL_NAME,
+    trust_remote_code=True,
+)
+
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
 
@@ -55,20 +162,48 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 
+print(f"Vocabulary size: {len(tokenizer)}")
+print(f"Pad token: {tokenizer.pad_token}")
+print(f"EOS token: {tokenizer.eos_token}")
+print()
+
+
+# ============================================================
+# DATASET CLASS
+# ============================================================
 
 class OriginDataset(Dataset):
-    def __init__(self, data):
+    def __init__(
+        self,
+        data,
+        tokenizer,
+        max_seq_length,
+    ):
+        self.data = data
+        self.tokenizer = tokenizer
+        self.max_seq_length = max_seq_length
         self.data = data
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, index):
-        prompt, full_text = format_example(self.data[index])
+        example = self.data[index]
 
-        tokens = tokenizer(
+        prompt, full_text = format_example(example)
+        prompt_text = format_prompt(example)
+
+        # ----------------------------------------------------
+        # Tokenize complete example
+        # ----------------------------------------------------
+
+        full_tokens = self.tokenizer(
             full_text,
-            max_length=512,
+            max_length=self.max_seq_length,
+            truncation=True,
+            padding="max_length",
+            return_tensors="pt",
+        )
             truncation=True,
             padding="max_length",
             return_tensors="pt",
@@ -82,11 +217,51 @@ class OriginDataset(Dataset):
             tokenizer(prompt, truncation=True, max_length=512)["input_ids"]
         )
 
+        # ----------------------------------------------------
+        # Create labels
+        # ----------------------------------------------------
+
         labels = input_ids.clone()
+        input_ids = full_tokens["input_ids"][0]
+        attention_mask = full_tokens["attention_mask"][0]
+
+        labels = input_ids.clone()
+
+        # ----------------------------------------------------
+        # Tokenize prompt separately
+        # ----------------------------------------------------
+
+        prompt_tokens = self.tokenizer(
+            prompt_text,
+            max_length=self.max_seq_length,
+            truncation=True,
+            padding=False,
+            return_tensors="pt",
+            add_special_tokens=True,
+        )
+
+        prompt_len = prompt_tokens["input_ids"].size(1)
+
+        # ----------------------------------------------------
+        # Mask prompt tokens
+        # ----------------------------------------------------
+
+        labels[:prompt_len] = -100
+
         # Mask padding tokens
+        labels[attention_mask == 0] = -100
         labels[attention_mask == 0] = -100
         # Mask prompt tokens (instruction + header) so loss is response-only
         labels[:prompt_len] = -100
+
+        # ----------------------------------------------------
+        # Safety:
+        # If truncation removed the entire response,
+        # don't allow the example to contribute invalid loss.
+        # ----------------------------------------------------
+
+        if (labels != -100).sum() == 0:
+            labels[-1] = -100
 
         return {
             "input_ids": input_ids,
@@ -95,28 +270,83 @@ class OriginDataset(Dataset):
         }
 
 
-def evaluate(model, loader):
-    model.eval()
-    total_loss = 0.0
-    with torch.no_grad():
-        for batch in loader:
-            batch = {k: v.to(device) for k, v in batch.items()}
-            outputs = model(**batch)
-            total_loss += outputs.loss.item()
-    model.train()
-    return total_loss / max(len(loader), 1)
+# ============================================================
+# CREATE DATASETS
+# ============================================================
+
+training_dataset = OriginDataset(
+    train_data,
+    tokenizer,
+    MAX_SEQ_LENGTH,
+)
+
+eval_dataset = OriginDataset(
+    eval_data,
+    tokenizer,
+    MAX_SEQ_LENGTH,
+)
 
 
-training_data = OriginDataset(train_set)
-train_loader = DataLoader(training_data, batch_size=2, shuffle=True)
+# ============================================================
+# MODEL
+# ============================================================
 
-eval_data = OriginDataset(test_set)
-eval_loader = DataLoader(eval_data, batch_size=2, shuffle=False)
+print("=" * 60)
+print("LOADING MODEL")
+print("=" * 60)
 
-optimizer = torch.optim.AdamW(model.parameters(), lr=2e-4)
+if torch.cuda.is_available():
+    model_dtype = torch.float16
+else:
+    model_dtype = torch.float32
 
-GRAD_ACCUM_STEPS = 8  # effective batch size = 2 * 8 = 16
-epochs = 3
+model = AutoModelForCausalLM.from_pretrained(
+    MODEL_NAME,
+    torch_dtype=model_dtype,
+    trust_remote_code=True,
+)
+
+# Required for training
+model.config.use_cache = False
+
+# Helps reduce VRAM usage
+model.gradient_checkpointing_enable()
+
+# Important when using gradient checkpointing
+model.enable_input_require_grads()
+
+
+# ============================================================
+# LoRA
+# ============================================================
+
+print("=" * 60)
+print("CONFIGURING LoRA")
+print("=" * 60)
+
+lora_config = LoraConfig(
+    r=16,
+    lora_alpha=32,
+
+    target_modules=[
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj",
+    ],
+
+    lora_dropout=0.05,
+
+    bias="none",
+
+    task_type="CAUSAL_LM",
+)
+
+model = get_peft_model(model, lora_config)
+model.print_trainable_parameters()
 
 model.train()
 for epoch in range(epochs):
@@ -133,20 +363,232 @@ for epoch in range(epochs):
             optimizer.step()
             optimizer.zero_grad()
 
-        total_loss += outputs.loss.item()
+print()
 
-    # Flush any remaining accumulated gradients at epoch end
-    if (step + 1) % GRAD_ACCUM_STEPS != 0:
-        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-        optimizer.step()
-        optimizer.zero_grad()
+
+# ============================================================
+# TRAINING ARGUMENTS
+# ============================================================
+
+use_fp16 = torch.cuda.is_available()
+
+training_args = TrainingArguments(
+    output_dir=OUTPUT_DIR,
+
+    # --------------------------------------------------------
+    # Batch
+    # --------------------------------------------------------
+
+    per_device_train_batch_size=TRAIN_BATCH_SIZE,
+
+    gradient_accumulation_steps=GRADIENT_ACCUMULATION_STEPS,
+
+    per_device_eval_batch_size=TRAIN_BATCH_SIZE,
+
+    # --------------------------------------------------------
+    # Training
+    # --------------------------------------------------------
+
+    num_train_epochs=NUM_EPOCHS,
+
+    learning_rate=LEARNING_RATE,
+
+    lr_scheduler_type="cosine",
+
+    warmup_ratio=0.05,
+
+    max_grad_norm=1.0,
+
+    # --------------------------------------------------------
+    # Evaluation
+    # --------------------------------------------------------
+
+    eval_strategy="steps",
+
+    eval_steps=250,
+
+    # --------------------------------------------------------
+    # Saving
+    # --------------------------------------------------------
+
+    save_strategy="steps",
+
+    save_steps=250,
+
+    save_total_limit=2,
+
+    load_best_model_at_end=True,
+
+    metric_for_best_model="eval_loss",
+
+    greater_is_better=False,
+
+    # --------------------------------------------------------
+    # Logging
+    # --------------------------------------------------------
+
+    logging_steps=10,
+
+    logging_first_step=True,
+
+    report_to="none",
+
+    # --------------------------------------------------------
+    # Precision
+    # --------------------------------------------------------
+
+    fp16=use_fp16,
+
+    bf16=False,
+
+    # --------------------------------------------------------
+    # Reproducibility
+    # --------------------------------------------------------
+
+    seed=SEED,
+
+    data_seed=SEED,
+
+    # --------------------------------------------------------
+    # Dataset
+    # --------------------------------------------------------
+
+    remove_unused_columns=False,
+
+    # --------------------------------------------------------
+    # Memory optimization
+    # --------------------------------------------------------
+
+    gradient_checkpointing=True,
+
+    # --------------------------------------------------------
+    # Optimizer
+    # --------------------------------------------------------
+
+    optim="adamw_torch",
+
+    # --------------------------------------------------------
+    # Dataloader
+    # --------------------------------------------------------
+
+    dataloader_num_workers=2,
+
+    dataloader_pin_memory=True,
+)
 
     train_loss = total_loss / len(train_loader)
     eval_loss = evaluate(model, eval_loader)
     print(f"Epoch {epoch+1} train loss: {train_loss:.4f} | eval loss: {eval_loss:.4f}")
     logs[epoch + 1] = {"train_loss": train_loss, "eval_loss": eval_loss}
 
-model.save_pretrained("origin_codegen_model")
-tokenizer.save_pretrained("origin_codegen_model")
-with open("training_logs.json", "w") as f:
-    json.dump(logs, f, indent=2)
+# ============================================================
+# TRAINER
+# ============================================================
+
+trainer = Trainer(
+    model=model,
+
+    args=training_args,
+
+    train_dataset=training_dataset,
+
+    eval_dataset=eval_dataset,
+
+    processing_class=tokenizer,
+)
+
+
+# ============================================================
+# TRAINING INFORMATION
+# ============================================================
+
+effective_batch_size = (
+    TRAIN_BATCH_SIZE *
+    GRADIENT_ACCUMULATION_STEPS
+)
+
+steps_per_epoch = (
+    len(train_data) //
+    effective_batch_size
+)
+
+total_steps = steps_per_epoch * NUM_EPOCHS
+
+
+print("=" * 60)
+print("STARTING ORIGIN CODEGEN TRAINING")
+print("=" * 60)
+
+print(f"Model: {MODEL_NAME}")
+print(f"Training examples: {len(train_data)}")
+print(f"Evaluation examples: {len(eval_data)}")
+print(f"Sequence length: {MAX_SEQ_LENGTH}")
+print(f"Batch size: {TRAIN_BATCH_SIZE}")
+print(f"Gradient accumulation: {GRADIENT_ACCUMULATION_STEPS}")
+print(f"Effective batch size: {effective_batch_size}")
+print(f"Epochs: {NUM_EPOCHS}")
+print(f"Learning rate: {LEARNING_RATE}")
+print(f"Estimated total optimizer steps: {total_steps}")
+print(f"FP16: {use_fp16}")
+print()
+print("Starting training...")
+print()
+
+
+# ============================================================
+# TRAIN
+# ============================================================
+
+train_result = trainer.train()
+
+
+# ============================================================
+# TRAINING SUMMARY
+# ============================================================
+
+print()
+print("=" * 60)
+print("TRAINING FINISHED")
+print("=" * 60)
+
+print(f"Training loss: {train_result.training_loss}")
+
+print()
+
+
+# ============================================================
+# FINAL EVALUATION
+# ============================================================
+
+print("=" * 60)
+print("FINAL EVALUATION")
+print("=" * 60)
+
+eval_results = trainer.evaluate()
+
+print(f"Final evaluation loss: {eval_results['eval_loss']}")
+
+if "eval_runtime" in eval_results:
+    print(f"Evaluation runtime: {eval_results['eval_runtime']:.2f}s")
+
+print()
+
+
+# ============================================================
+# SAVE
+# ============================================================
+
+print("=" * 60)
+print("SAVING MODEL")
+print("=" * 60)
+
+model.save_pretrained(OUTPUT_DIR)
+
+tokenizer.save_pretrained(OUTPUT_DIR)
+
+print(f"Model saved to: {OUTPUT_DIR}")
+
+print()
+print("=" * 60)
+print("ORIGIN CODEGEN TRAINING COMPLETE")
+print("=" * 60)

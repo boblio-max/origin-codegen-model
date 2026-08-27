@@ -15,7 +15,7 @@ RESPONSE_HEADER = "\n\n### Response\n"
 # ============================================================
 
 DATASET_PATH = "origin_instruction_tuning_dataset_v3.json"
-MODEL_NAME = "Qwen/Qwen3-1.7B"
+MODEL_NAME = "Qwen/Qwen2.5-Coder-3B-Instruct"
 OUTPUT_DIR = "./origin_codegen_model"
 
 MAX_SEQ_LENGTH = 512
@@ -95,9 +95,9 @@ print("=" * 60)
 
 print(f"Total examples loaded: {len(dataset)}")
 
-if len(dataset) != 10499:
+if len(dataset) != 20500:
     print(
-        f"WARNING: Expected 10499 examples, "
+        f"WARNING: Expected 20500 examples, "
         f"but found {len(dataset)}."
     )
 

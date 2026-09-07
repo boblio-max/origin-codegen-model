@@ -476,10 +476,10 @@ training_args = TrainingArguments(
     dataloader_pin_memory=True,
 )
 
-    train_loss = total_loss / len(train_loader)
-    eval_loss = evaluate(model, eval_loader)
-    print(f"Epoch {epoch+1} train loss: {train_loss:.4f} | eval loss: {eval_loss:.4f}")
-    logs[epoch + 1] = {"train_loss": train_loss, "eval_loss": eval_loss}
+train_loss = total_loss / len(train_loader)
+eval_loss = evaluate(model, eval_loader)
+print(f"Epoch {epoch+1} train loss: {train_loss:.4f} | eval loss: {eval_loss:.4f}")
+logs[epoch + 1] = {"train_loss": train_loss, "eval_loss": eval_loss}
 
 # ============================================================
 # TRAINER

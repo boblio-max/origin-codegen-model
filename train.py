@@ -66,7 +66,6 @@ print()
 # ============================================================
 
 def format_example(example):
-def format_example(example):
     instruction = example["instruction"].strip()
     output = example["output"].strip()
 
@@ -151,17 +150,6 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
 print(model.device)
 
-lora_config = LoraConfig(
-    r=8,
-    lora_alpha=16,
-    target_modules=["q_proj", "v_proj"],
-    lora_dropout=0.05,
-    bias="none",
-    task_type="CAUSAL_LM",
-)
-model = get_peft_model(model, lora_config)
-model.print_trainable_parameters()
-
 print(f"Vocabulary size: {len(tokenizer)}")
 print(f"Pad token: {tokenizer.pad_token}")
 print(f"EOS token: {tokenizer.eos_token}")
@@ -200,10 +188,6 @@ class OriginDataset(Dataset):
         full_tokens = self.tokenizer(
             full_text,
             max_length=self.max_seq_length,
-            truncation=True,
-            padding="max_length",
-            return_tensors="pt",
-        )
             truncation=True,
             padding="max_length",
             return_tensors="pt",
@@ -348,28 +332,6 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 
-model.train()
-for epoch in range(epochs):
-    total_loss = 0.0
-    optimizer.zero_grad()
-    for step, batch in enumerate(train_loader):
-        batch = {k: v.to(device) for k, v in batch.items()}
-        outputs = model(**batch)
-        loss = outputs.loss / GRAD_ACCUM_STEPS
-        loss.backward()
-
-        if (step + 1) % GRAD_ACCUM_STEPS == 0:
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-            optimizer.step()
-            optimizer.zero_grad()
-
-print()
-
-
-# ============================================================
-# TRAINING ARGUMENTS
-# ============================================================
-
 use_fp16 = torch.cuda.is_available()
 
 training_args = TrainingArguments(
@@ -475,11 +437,6 @@ training_args = TrainingArguments(
 
     dataloader_pin_memory=True,
 )
-
-train_loss = total_loss / len(train_loader)
-eval_loss = evaluate(model, eval_loader)
-print(f"Epoch {epoch+1} train loss: {train_loss:.4f} | eval loss: {eval_loss:.4f}")
-logs[epoch + 1] = {"train_loss": train_loss, "eval_loss": eval_loss}
 
 # ============================================================
 # TRAINER

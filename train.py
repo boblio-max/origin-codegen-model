@@ -2,13 +2,13 @@ import json
 import random
 import torch
 from torch.utils.data import Dataset, DataLoader
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments, Trainer
 from peft import LoraConfig, get_peft_model
 
 logs = {}
 
 INSTRUCTION_HEADER = "### Instruction\n"
-RESPONSE_HEADER = "\n\n### Response\n"
+RESPONSE_HEADER = "\n\n### Response"
 
 # ============================================================
 # CONFIG
@@ -104,17 +104,11 @@ random.shuffle(dataset)
 train_set = dataset[: int(len(dataset) * 0.9)]
 test_set = dataset[int(len(dataset) * 0.9):]
 
-random.shuffle(dataset)
-train_set = dataset[: int(len(dataset) * 0.9)]
-test_set = dataset[int(len(dataset) * 0.9):]
-print(len(train_set))
-print(len(test_set))
-
-print(len(train_set))
-print(len(test_set))
-
 train_data = train_set
 eval_data = test_set
+
+print(len(train_set))
+print(len(test_set))
 
 print(f"Training examples: {len(train_data)}")
 print(f"Evaluation examples: {len(eval_data)}")
@@ -141,6 +135,7 @@ if tokenizer.pad_token is None:
 
 # bf16 is far more stable for training than raw fp16 without a GradScaler.
 # Falls back to fp32 if bf16 isn't supported by the GPU.
+# use_bf16 = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
 use_bf16 = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
 model_dtype = torch.bfloat16 if use_bf16 else torch.float32
 print(f"Loading model in {model_dtype}")
@@ -437,6 +432,7 @@ training_args = TrainingArguments(
 
     dataloader_pin_memory=True,
 )
+
 
 # ============================================================
 # TRAINER
